@@ -9,7 +9,7 @@
             This is a CRUD application starter with best practices built-in.
         </flux:subheading>
 
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <flux:button variant="primary" href="#features">
                 <flux:icon.rocket-launch class="size-4" />
                 Get Started
@@ -18,6 +18,14 @@
                 <flux:icon.book-open class="size-4" />
                 Documentation
             </flux:button>
+        </div>
+
+        <!-- AI Credit Badge -->
+        <div class="inline-flex items-center px-4 py-2 bg-white dark:bg-zinc-900 rounded-full shadow-sm border border-orange-200 dark:border-zinc-600">
+            <flux:icon.sparkles class="size-4 mr-2" style="color: rgb(201, 100, 66);" />
+            <flux:text class="text-sm font-medium" style="color: rgb(201, 100, 66);">
+                Crafted with Claude AI
+            </flux:text>
         </div>
     </div>
 
@@ -235,4 +243,5 @@
             </flux:link>
         </div>
     </div>
+
 </x-layouts.main>
