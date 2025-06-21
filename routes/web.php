@@ -12,6 +12,13 @@ Route::view('dashboard', 'dashboard')
     ->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {
+    // Administrator Routes
+    Route::middleware(['role:Super Admin|Admin'])->prefix('administrator')->name('admin.')->group(function () {
+        Route::get('/users', \App\Livewire\Administrator\UserManagement::class)->name('users');
+        Route::get('/roles', \App\Livewire\Administrator\RoleManagement::class)->name('roles');
+        Route::get('/permissions', \App\Livewire\Administrator\PermissionManagement::class)->name('permissions');
+    });
+
     Route::redirect('settings', 'settings/profile');
 
     Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
