@@ -1,5 +1,5 @@
 ## Development Notes
-- gunakan component flux(resources/views/flux) pada view yang dibuat
-- selalu jelaskan dalam bahasa indonesia
-- sebelum generate code pelajari dahulu docs/LARAVEL-BEST-PRACTICES.md dan docs/LIVEWIRE-BEST-PRACTICES.md dan terapkan pada code yang digenerate
-- code yang digenerate harus selalu konsisten dengan kode kode yang sudah ada
+- use the flux(resources/views/flux) component in the created view
+- always explain in Indonesian
+- before generating code, study docs/LARAVEL-BEST-PRACTICES.md and docs/LIVEWIRE-BEST-PRACTICES.md and apply them to the generated code.
+- the generated code must always be consistent with the existing code.

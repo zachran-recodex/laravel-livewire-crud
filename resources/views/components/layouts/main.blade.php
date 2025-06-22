@@ -41,7 +41,7 @@
         </flux:main>
 
         <!-- Footer -->
-        <flux:footer class="bg-zinc-50 border-t border-zinc-200 dark:bg-zinc-800 dark:border-zinc-700 mt-auto">
+        <flux:footer class="bg-zinc-50 border-t border-zinc-200 dark:bg-zinc-900 dark:border-zinc-700 mt-auto">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
                 <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
                     <div class="text-sm text-zinc-600 dark:text-zinc-400">
