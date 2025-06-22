@@ -6,11 +6,14 @@ use App\Models\User;
 use Carbon\Carbon;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
+use Livewire\WithPagination;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class Dashboard extends Component
 {
+    use WithPagination;
+
     #[Computed]
     public function totalUsers()
     {
@@ -44,7 +47,7 @@ class Dashboard extends Component
     #[Computed]
     public function recentUsers()
     {
-        return User::latest()->take(5)->get();
+        return User::latest()->paginate(5, pageName: 'recentUsersPage');
     }
 
     #[Computed]
@@ -52,17 +55,17 @@ class Dashboard extends Component
     {
         $last7Days = [];
         $userCounts = [];
-        
+
         for ($i = 6; $i >= 0; $i--) {
             $date = Carbon::now()->subDays($i);
             $dateFormatted = $date->format('M j');
-            
+
             $userCount = User::whereDate('created_at', $date->toDateString())->count();
-            
+
             $last7Days[] = $dateFormatted;
             $userCounts[] = $userCount;
         }
-        
+
         return [
             'labels' => $last7Days,
             'data' => $userCounts
