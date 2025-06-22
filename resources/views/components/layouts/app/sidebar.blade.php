@@ -14,6 +14,7 @@
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Platform')" class="grid">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                    <flux:navlist.item icon="photo" :href="route('heroes')" :current="request()->routeIs('heroes')" wire:navigate>Manage Heroes</flux:navlist.item>
                 </flux:navlist.group>
 
                 @role('Super Admin')
@@ -23,6 +24,7 @@
                     <flux:navlist.item icon="key" :href="route('admin.permissions')" :current="request()->routeIs('admin.permissions')" wire:navigate>Manage Permissions</flux:navlist.item>
                 </flux:navlist.group>
                 @endrole
+
             </flux:navlist>
 
             <flux:spacer />

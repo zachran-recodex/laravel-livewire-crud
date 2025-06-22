@@ -19,6 +19,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/permissions', \App\Livewire\Administrator\PermissionManagement::class)->name('permissions');
     });
 
+    Route::get('/heroes', \App\Livewire\ManageHeroes::class)->name('heroes');
+
     Route::redirect('settings', 'settings/profile');
 
     Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
