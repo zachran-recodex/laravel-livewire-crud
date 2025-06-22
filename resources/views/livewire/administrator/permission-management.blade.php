@@ -38,12 +38,14 @@
                                 {{ $permission->guard_name }}
                             </flux:badge>
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-zinc-500 dark:text-zinc-400">{{ $permission->created_at->format('d M Y') }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-zinc-500 dark:text-zinc-400">
+                            {{ $permission->created_at->format('d F Y') }}
+                        </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                             <div class="flex space-x-2">
-                                <flux:button wire:click="edit({{ $permission->id }})" size="sm" variant="ghost" icon="pencil" />
+                                <flux:button wire:click="edit({{ $permission->id }})" size="sm" variant="primary" color="blue" icon="pencil" />
                                 <flux:modal.trigger name="delete-permission-{{ $permission->id }}">
-                                    <flux:button size="sm" variant="danger" icon="trash" />
+                                    <flux:button size="sm" variant="primary" color="red" icon="trash" />
                                 </flux:modal.trigger>
                             </div>
                         </td>

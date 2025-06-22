@@ -44,12 +44,14 @@
                                 </flux:badge>
                             @endforeach
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-zinc-500 dark:text-zinc-400">{{ $user->created_at->format('d M Y') }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-zinc-500 dark:text-zinc-400">
+                            {{ $user->created_at->format('d F Y') }}
+                        </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                             <div class="flex space-x-2">
-                                <flux:button wire:click="edit({{ $user->id }})" size="sm" variant="ghost" icon="pencil" />
+                                <flux:button wire:click="edit({{ $user->id }})" size="sm" variant="primary" color="blue" icon="pencil" />
                                 <flux:modal.trigger name="delete-user-{{ $user->id }}">
-                                    <flux:button size="sm" variant="danger" icon="trash" />
+                                    <flux:button size="sm" variant="primary" color="red" icon="trash" />
                                 </flux:modal.trigger>
                             </div>
                         </td>
@@ -102,17 +104,14 @@
                 </flux:field>
 
                 <flux:field>
-                    @if($editingUserId)
-                        <flux:label badge="Leave empty if you don't want to change">
-                            Password
-                        </flux:label>
-                    @else
-                        <flux:label>
-                            Password
-                        </flux:label>
-                    @endif
+                    <flux:label>Password</flux:label>
                     <flux:input wire:model="password" type="password" placeholder="Enter password..." />
                     <flux:error name="password" />
+                    @if($editingUserId)
+                        <flux:description>
+                            Leave empty if you don't want to change
+                        </flux:description>
+                    @endif
                 </flux:field>
 
                 <flux:field>

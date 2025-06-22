@@ -7,7 +7,7 @@ Route::get('/', function () {
     return view('index');
 })->name('home');
 
-Route::view('dashboard', 'dashboard')
+Route::get('/dashboard', \App\Livewire\Dashboard::class)
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
