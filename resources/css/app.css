@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import '../../vendor/livewire/flux/dist/flux.css';
+@import './swiper-custom.css';
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -26,6 +27,13 @@
     --color-accent: var(--color-neutral-800);
     --color-accent-content: var(--color-neutral-800);
     --color-accent-foreground: var(--color-white);
+
+    /* Flite Charter Brand Colors */
+    --flite-emerald: #063313;
+    --flite-white: #ffffff;
+    --flite-gold: #c89116;
+    --flite-brown: #6b5541;
+    --flite-gray: #f8fafc;
 }
 
 @layer theme {
@@ -64,3 +72,47 @@ select:focus[data-flux-control] {
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
+
+/* Flite Charter Typography Classes */
+.font-primary {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.font-secondary {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Glass Navigation */
+.glass-nav {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.glass-nav-scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation for slide content */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.swiper-slide.swiper-slide-active h1,
+.swiper-slide.swiper-slide-active p,
+.swiper-slide.swiper-slide-active .flex {
+    animation: slideInUp 0.8s ease-out forwards;
+}
