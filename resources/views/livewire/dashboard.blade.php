@@ -1,4 +1,5 @@
 <div class="flex h-full w-full flex-1 flex-col gap-6 rounded-xl">
+    @role('Super Admin')
     <!-- Cards Section -->
     <div class="grid auto-rows-min gap-6 md:grid-cols-3">
         <div class="bg-white dark:bg-zinc-900 p-6 rounded-lg shadow-sm border border-zinc-200 dark:border-zinc-700">
@@ -112,4 +113,5 @@
             </div>
         </div>
     </div>
+    @endrole
 </div>
