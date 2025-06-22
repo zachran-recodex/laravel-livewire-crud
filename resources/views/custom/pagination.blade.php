@@ -25,17 +25,17 @@
         <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
             <div>
                 <p class="text-sm text-zinc-700 leading-5 dark:text-zinc-300">
-                    {!! __('Menampilkan') !!}
+                    Showing
                     @if ($paginator->firstItem())
                         <span class="font-medium">{{ $paginator->firstItem() }}</span>
-                        {!! __('sampai') !!}
+                        to
                         <span class="font-medium">{{ $paginator->lastItem() }}</span>
                     @else
                         {{ $paginator->count() }}
                     @endif
-                    {!! __('dari') !!}
+                    of
                     <span class="font-medium">{{ $paginator->total() }}</span>
-                    {!! __('hasil') !!}
+                    results
                 </p>
             </div>
 

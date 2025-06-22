@@ -1,12 +1,12 @@
 <div>
     <header class="flex items-center justify-between mb-6">
         <div>
-            <flux:heading size="xl">Manajemen Permission</flux:heading>
-            <flux:subheading>Kelola permission dalam sistem</flux:subheading>
+            <flux:heading size="xl">Permission Management</flux:heading>
+            <flux:subheading>Manage permissions in the system</flux:subheading>
         </div>
 
         <flux:button wire:click="create" variant="primary" icon="plus">
-            Tambah Permission
+            Add Permission
         </flux:button>
     </header>
 
@@ -15,7 +15,7 @@
     @endif
 
     <div class="mb-6">
-        <flux:input wire:model.live.debounce.300ms="search" placeholder="Cari permission..." icon="magnifying-glass" />
+        <flux:input wire:model.live.debounce.300ms="search" placeholder="Search permissions..." icon="magnifying-glass" />
     </div>
 
     <div class="border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 rounded-lg overflow-hidden">
@@ -23,10 +23,10 @@
             <table class="min-w-full divide-y divide-zinc-200 dark:divide-zinc-700">
                 <thead class="bg-zinc-50 dark:bg-zinc-800">
                 <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Nama Permission</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Permission Name</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Guard</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Dibuat</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Aksi</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Created</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Actions</th>
                 </tr>
                 </thead>
                 <tbody class="bg-white dark:bg-zinc-900 divide-y divide-zinc-200 dark:divide-zinc-700">
@@ -51,7 +51,7 @@
                 @empty
                     <tr>
                         <td colspan="4" class="px-6 py-4 text-center text-zinc-500 dark:text-zinc-400">
-                            Tidak ada permission ditemukan
+                            No permissions found
                         </td>
                     </tr>
                 @endforelse
@@ -70,19 +70,19 @@
             <div class="space-y-6">
                 <div>
                     <flux:heading size="lg">
-                        {{ $editingPermissionId ? 'Edit Permission' : 'Tambah Permission Baru' }}
+                        {{ $editingPermissionId ? 'Edit Permission' : 'Add New Permission' }}
                     </flux:heading>
                     <flux:text class="mt-2">
-                        {{ $editingPermissionId ? 'Ubah detail permission yang dipilih.' : 'Buat permission baru untuk sistem.' }}
+                        {{ $editingPermissionId ? 'Modify the selected permission details.' : 'Create a new permission for the system.' }}
                     </flux:text>
                 </div>
 
                 <flux:field>
-                    <flux:label>Nama Permission</flux:label>
-                    <flux:input wire:model="name" placeholder="Contoh: create-posts, edit-users" />
+                    <flux:label>Permission Name</flux:label>
+                    <flux:input wire:model="name" placeholder="Example: create-posts, edit-users" />
                     <flux:error name="name" />
                     <flux:description>
-                        Gunakan format kebab-case seperti "create-posts" atau "view-users"
+                        Use kebab-case format like "create-posts" or "view-users"
                     </flux:description>
                 </flux:field>
 
@@ -90,11 +90,11 @@
                     <flux:spacer />
 
                     <flux:modal.close>
-                        <flux:button variant="ghost">Batal</flux:button>
+                        <flux:button variant="ghost">Cancel</flux:button>
                     </flux:modal.close>
 
                     <flux:button type="submit" variant="primary">
-                        {{ $editingPermissionId ? 'Update' : 'Simpan' }}
+                        {{ $editingPermissionId ? 'Update' : 'Save' }}
                     </flux:button>
                 </div>
             </div>
@@ -106,10 +106,10 @@
         <flux:modal name="delete-permission-{{ $permission->id }}" class="min-w-[22rem]">
             <div class="space-y-6">
                 <div>
-                    <flux:heading size="lg">Hapus Permission?</flux:heading>
+                    <flux:heading size="lg">Delete Permission?</flux:heading>
                     <flux:text class="mt-2">
-                        <p>Anda akan menghapus permission "{{ $permission->name }}".</p>
-                        <p>Tindakan ini tidak dapat dibatalkan.</p>
+                        <p>You are about to delete permission "{{ $permission->name }}".</p>
+                        <p>This action cannot be undone.</p>
                     </flux:text>
                 </div>
 
@@ -117,11 +117,11 @@
                     <flux:spacer />
 
                     <flux:modal.close>
-                        <flux:button variant="ghost">Batal</flux:button>
+                        <flux:button variant="ghost">Cancel</flux:button>
                     </flux:modal.close>
 
                     <flux:button wire:click="delete({{ $permission->id }})" variant="danger">
-                        Hapus Permission
+                        Delete Permission
                     </flux:button>
                 </div>
             </div>

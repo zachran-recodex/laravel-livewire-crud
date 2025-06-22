@@ -104,7 +104,7 @@ class UserManagement extends Component
 
         $user->syncRoles($this->selectedRoles);
 
-        $message = $this->editingUserId ? 'User berhasil diupdate!' : 'User berhasil dibuat!';
+        $message = $this->editingUserId ? 'User successfully updated!' : 'User successfully created!';
 
         $this->reset(['name', 'username', 'email', 'password', 'selectedRoles', 'editingUserId']);
         $this->showModal = false;
@@ -115,7 +115,7 @@ class UserManagement extends Component
     public function delete($userId)
     {
         User::findOrFail($userId)->delete();
-        session()->flash('message', 'User berhasil dihapus!');
+        session()->flash('message', 'User successfully deleted!');
 
         // Close the confirmation modal after delete
         $this->modal("delete-user-{$userId}")->close();

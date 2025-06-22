@@ -66,7 +66,7 @@ class PermissionManagement extends Component
             Permission::create(['name' => $this->name]);
         }
 
-        $message = $this->editingPermissionId ? 'Permission berhasil diupdate!' : 'Permission berhasil dibuat!';
+        $message = $this->editingPermissionId ? 'Permission successfully updated!' : 'Permission successfully created!';
 
         $this->reset(['name', 'editingPermissionId']);
         $this->showModal = false;
@@ -77,7 +77,7 @@ class PermissionManagement extends Component
     public function delete($permissionId)
     {
         Permission::findOrFail($permissionId)->delete();
-        session()->flash('message', 'Permission berhasil dihapus!');
+        session()->flash('message', 'Permission successfully deleted!');
 
         // Close the confirmation modal after delete
         $this->modal("delete-permission-{$permissionId}")->close();

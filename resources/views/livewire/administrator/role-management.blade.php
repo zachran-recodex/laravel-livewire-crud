@@ -1,12 +1,12 @@
 <div>
     <header class="flex items-center justify-between mb-6">
         <div>
-            <flux:heading size="xl">Manajemen Role</flux:heading>
-            <flux:subheading>Kelola role dan permission mereka</flux:subheading>
+            <flux:heading size="xl">Role Management</flux:heading>
+            <flux:subheading>Manage roles and their permissions</flux:subheading>
         </div>
 
         <flux:button wire:click="create" variant="primary" icon="plus">
-            Tambah Role
+            Add Role
         </flux:button>
     </header>
 
@@ -15,7 +15,7 @@
     @endif
 
     <div class="mb-6">
-        <flux:input wire:model.live.debounce.300ms="search" placeholder="Cari role..." icon="magnifying-glass" />
+        <flux:input wire:model.live.debounce.300ms="search" placeholder="Search roles..." icon="magnifying-glass" />
     </div>
 
     <div class="border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 rounded-lg overflow-hidden">
@@ -23,10 +23,10 @@
             <table class="min-w-full divide-y divide-zinc-200 dark:divide-zinc-700">
                 <thead class="bg-zinc-50 dark:bg-zinc-800">
                 <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Nama Role</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Permission</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Dibuat</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Aksi</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Role Name</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Permissions</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Created</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Actions</th>
                 </tr>
                 </thead>
                 <tbody class="bg-white dark:bg-zinc-900 divide-y divide-zinc-200 dark:divide-zinc-700">
@@ -55,7 +55,7 @@
                 @empty
                     <tr>
                         <td colspan="4" class="px-6 py-4 text-center text-zinc-500 dark:text-zinc-400">
-                            Tidak ada role ditemukan
+                            No roles found
                         </td>
                     </tr>
                 @endforelse
@@ -74,21 +74,21 @@
             <div class="space-y-6">
                 <div>
                     <flux:heading size="lg">
-                        {{ $editingRoleId ? 'Edit Role' : 'Tambah Role Baru' }}
+                        {{ $editingRoleId ? 'Edit Role' : 'Add New Role' }}
                     </flux:heading>
                     <flux:text class="mt-2">
-                        {{ $editingRoleId ? 'Ubah detail role dan permission yang dipilih.' : 'Buat role baru dengan permission yang sesuai.' }}
+                        {{ $editingRoleId ? 'Modify the selected role details and permissions.' : 'Create a new role with appropriate permissions.' }}
                     </flux:text>
                 </div>
 
                 <flux:field>
-                    <flux:label>Nama Role</flux:label>
-                    <flux:input wire:model="name" placeholder="Masukkan nama role..." />
+                    <flux:label>Role Name</flux:label>
+                    <flux:input wire:model="name" placeholder="Enter role name..." />
                     <flux:error name="name" />
                 </flux:field>
 
                 <flux:field>
-                    <flux:label>Permission</flux:label>
+                    <flux:label>Permissions</flux:label>
                     <div class="space-y-2 max-h-40 overflow-y-auto border border-zinc-200 dark:border-zinc-700 rounded-lg p-3">
                         @foreach ($this->permissions as $permission)
                             <flux:checkbox
@@ -100,7 +100,7 @@
                     </div>
                     <flux:error name="selectedPermissions" />
                     <flux:description>
-                        Pilih permission yang akan dimiliki oleh role ini
+                        Select permissions that this role will have
                     </flux:description>
                 </flux:field>
 
@@ -108,11 +108,11 @@
                     <flux:spacer />
 
                     <flux:modal.close>
-                        <flux:button variant="ghost">Batal</flux:button>
+                        <flux:button variant="ghost">Cancel</flux:button>
                     </flux:modal.close>
 
                     <flux:button type="submit" variant="primary">
-                        {{ $editingRoleId ? 'Update' : 'Simpan' }}
+                        {{ $editingRoleId ? 'Update' : 'Save' }}
                     </flux:button>
                 </div>
             </div>
@@ -124,10 +124,10 @@
         <flux:modal name="delete-role-{{ $role->id }}" class="min-w-[22rem]">
             <div class="space-y-6">
                 <div>
-                    <flux:heading size="lg">Hapus Role?</flux:heading>
+                    <flux:heading size="lg">Delete Role?</flux:heading>
                     <flux:text class="mt-2">
-                        <p>Anda akan menghapus role "{{ $role->name }}".</p>
-                        <p>Tindakan ini tidak dapat dibatalkan.</p>
+                        <p>You are about to delete role "{{ $role->name }}".</p>
+                        <p>This action cannot be undone.</p>
                     </flux:text>
                 </div>
 
@@ -135,11 +135,11 @@
                     <flux:spacer />
 
                     <flux:modal.close>
-                        <flux:button variant="ghost">Batal</flux:button>
+                        <flux:button variant="ghost">Cancel</flux:button>
                     </flux:modal.close>
 
                     <flux:button wire:click="delete({{ $role->id }})" variant="danger">
-                        Hapus Role
+                        Delete Role
                     </flux:button>
                 </div>
             </div>

@@ -1,12 +1,12 @@
 <div>
     <header class="flex items-center justify-between mb-6">
         <div>
-            <flux:heading size="xl">Manajemen User</flux:heading>
-            <flux:subheading>Kelola pengguna dan role mereka</flux:subheading>
+            <flux:heading size="xl">User Management</flux:heading>
+            <flux:subheading>Manage users and their roles</flux:subheading>
         </div>
 
         <flux:button wire:click="create" variant="primary" icon="plus">
-            Tambah User
+            Add User
         </flux:button>
     </header>
 
@@ -15,7 +15,7 @@
     @endif
 
     <div class="mb-6">
-        <flux:input wire:model.live.debounce.300ms="search" placeholder="Cari user..." icon="magnifying-glass" />
+        <flux:input wire:model.live.debounce.300ms="search" placeholder="Search users..." icon="magnifying-glass" />
     </div>
 
     <div class="border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 rounded-lg overflow-hidden">
@@ -23,12 +23,12 @@
             <table class="min-w-full divide-y divide-zinc-200 dark:divide-zinc-700">
                 <thead class="bg-zinc-50 dark:bg-zinc-800">
                 <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Nama</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Name</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Username</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Email</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Role</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Dibuat</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Aksi</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Roles</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Created</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Actions</th>
                 </tr>
                 </thead>
                 <tbody class="bg-white dark:bg-zinc-900 divide-y divide-zinc-200 dark:divide-zinc-700">
@@ -57,7 +57,7 @@
                 @empty
                     <tr>
                         <td colspan="6" class="px-6 py-4 text-center text-zinc-500 dark:text-zinc-400">
-                            Tidak ada user ditemukan
+                            No users found
                         </td>
                     </tr>
                 @endforelse
@@ -76,34 +76,34 @@
             <div class="space-y-6">
                 <div>
                     <flux:heading size="lg">
-                        {{ $editingUserId ? 'Edit User' : 'Tambah User Baru' }}
+                        {{ $editingUserId ? 'Edit User' : 'Add New User' }}
                     </flux:heading>
                     <flux:text class="mt-2">
-                        {{ $editingUserId ? 'Ubah informasi user dan role yang dipilih.' : 'Buat user baru dengan role yang sesuai.' }}
+                        {{ $editingUserId ? 'Modify user information and selected roles.' : 'Create a new user with appropriate roles.' }}
                     </flux:text>
                 </div>
 
                 <flux:field>
-                    <flux:label>Nama</flux:label>
-                    <flux:input wire:model="name" placeholder="Masukkan nama..." />
+                    <flux:label>Name</flux:label>
+                    <flux:input wire:model="name" placeholder="Enter name..." />
                     <flux:error name="name" />
                 </flux:field>
 
                 <flux:field>
                     <flux:label>Username</flux:label>
-                    <flux:input wire:model="username" placeholder="Masukkan username..." />
+                    <flux:input wire:model="username" placeholder="Enter username..." />
                     <flux:error name="username" />
                 </flux:field>
 
                 <flux:field>
                     <flux:label>Email</flux:label>
-                    <flux:input wire:model="email" type="email" placeholder="Masukkan email..." />
+                    <flux:input wire:model="email" type="email" placeholder="Enter email..." />
                     <flux:error name="email" />
                 </flux:field>
 
                 <flux:field>
                     @if($editingUserId)
-                        <flux:label badge="Kosongkan jika tidak ingin mengubah">
+                        <flux:label badge="Leave empty if you don't want to change">
                             Password
                         </flux:label>
                     @else
@@ -111,12 +111,12 @@
                             Password
                         </flux:label>
                     @endif
-                    <flux:input wire:model="password" type="password" placeholder="Masukkan password..." />
+                    <flux:input wire:model="password" type="password" placeholder="Enter password..." />
                     <flux:error name="password" />
                 </flux:field>
 
                 <flux:field>
-                    <flux:label>Role</flux:label>
+                    <flux:label>Roles</flux:label>
                     <div class="space-y-2 max-h-32 overflow-y-auto border border-zinc-200 dark:border-zinc-700 rounded-lg p-3">
                         @foreach ($this->roles as $role)
                             <flux:checkbox
@@ -128,7 +128,7 @@
                     </div>
                     <flux:error name="selectedRoles" />
                     <flux:description>
-                        Pilih role yang akan dimiliki oleh user ini
+                        Select roles that this user will have
                     </flux:description>
                 </flux:field>
 
@@ -136,11 +136,11 @@
                     <flux:spacer />
 
                     <flux:modal.close>
-                        <flux:button variant="ghost">Batal</flux:button>
+                        <flux:button variant="ghost">Cancel</flux:button>
                     </flux:modal.close>
 
                     <flux:button type="submit" variant="primary">
-                        {{ $editingUserId ? 'Update' : 'Simpan' }}
+                        {{ $editingUserId ? 'Update' : 'Save' }}
                     </flux:button>
                 </div>
             </div>
@@ -152,10 +152,10 @@
         <flux:modal name="delete-user-{{ $user->id }}" class="min-w-[22rem]">
             <div class="space-y-6">
                 <div>
-                    <flux:heading size="lg">Hapus User?</flux:heading>
+                    <flux:heading size="lg">Delete User?</flux:heading>
                     <flux:text class="mt-2">
-                        <p>Anda akan menghapus user "{{ $user->name }}" ({{ $user->email }}).</p>
-                        <p>Tindakan ini tidak dapat dibatalkan.</p>
+                        <p>You are about to delete user "{{ $user->name }}" ({{ $user->email }}).</p>
+                        <p>This action cannot be undone.</p>
                     </flux:text>
                 </div>
 
@@ -163,11 +163,11 @@
                     <flux:spacer />
 
                     <flux:modal.close>
-                        <flux:button variant="ghost">Batal</flux:button>
+                        <flux:button variant="ghost">Cancel</flux:button>
                     </flux:modal.close>
 
                     <flux:button wire:click="delete({{ $user->id }})" variant="danger">
-                        Hapus User
+                        Delete User
                     </flux:button>
                 </div>
             </div>

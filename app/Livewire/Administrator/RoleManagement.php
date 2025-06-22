@@ -79,7 +79,7 @@ class RoleManagement extends Component
 
         $role->syncPermissions($this->selectedPermissions);
 
-        $message = $this->editingRoleId ? 'Role berhasil diupdate!' : 'Role berhasil dibuat!';
+        $message = $this->editingRoleId ? 'Role successfully updated!' : 'Role successfully created!';
 
         $this->reset(['name', 'selectedPermissions', 'editingRoleId']);
         $this->showModal = false;
@@ -90,7 +90,7 @@ class RoleManagement extends Component
     public function delete($roleId)
     {
         Role::findOrFail($roleId)->delete();
-        session()->flash('message', 'Role berhasil dihapus!');
+        session()->flash('message', 'Role successfully deleted!');
 
         // Close the confirmation modal after delete
         $this->modal("delete-role-{$roleId}")->close();
