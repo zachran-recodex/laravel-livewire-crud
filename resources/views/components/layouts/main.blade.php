@@ -32,24 +32,24 @@
                     <!-- Desktop Navigation -->
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline space-x-8">
-                            <a href="#charter" class="text-white hover:text-[var(--flite-gold)] px-3 py-2 text-sm font-medium transition-colors">Charter</a>
-                            <a href="#fleet" class="text-white hover:text-[var(--flite-gold)] px-3 py-2 text-sm font-medium transition-colors">Fleet</a>
-                            <a href="#services" class="text-white hover:text-[var(--flite-gold)] px-3 py-2 text-sm font-medium transition-colors">Services</a>
-                            <a href="#about" class="text-white hover:text-[var(--flite-gold)] px-3 py-2 text-sm font-medium transition-colors">About</a>
-                            <a href="#contact" class="text-white hover:text-[var(--flite-gold)] px-3 py-2 text-sm font-medium transition-colors">Contact</a>
+                            <a href="#charter" class="text-white hover:text-[var(--color-gold)] px-3 py-2 text-sm font-medium transition-colors">Charter</a>
+                            <a href="#fleet" class="text-white hover:text-[var(--color-gold)] px-3 py-2 text-sm font-medium transition-colors">Fleet</a>
+                            <a href="#services" class="text-white hover:text-[var(--color-gold)] px-3 py-2 text-sm font-medium transition-colors">Services</a>
+                            <a href="#about" class="text-white hover:text-[var(--color-gold)] px-3 py-2 text-sm font-medium transition-colors">About</a>
+                            <a href="#contact" class="text-white hover:text-[var(--color-gold)] px-3 py-2 text-sm font-medium transition-colors">Contact</a>
                         </div>
                     </div>
 
                     <!-- CTA Button -->
                     <div class="hidden md:block">
-                        <a href="#quote" class="inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white hover:bg-opacity-90 transition-colors" style="background-color: var(--flite-gold);">
+                        <a href="#quote" class="inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white hover:bg-opacity-90 transition-colors" style="background-color: var(--color-gold);">
                             Get Quote
                         </a>
                     </div>
 
                     <!-- Mobile menu button -->
                     <div class="md:hidden">
-                        <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-[var(--flite-gold)] hover:bg-white/10 focus:outline-none">
+                        <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-[var(--color-gold)] hover:bg-white/10 focus:outline-none">
                             <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                             </svg>
@@ -70,7 +70,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                     <!-- Company Info -->
                     <div class="col-span-1 md:col-span-2">
-                        <div class="font-primary font-bold text-xl mb-2" style="color: var(--flite-emerald);">
+                        <div class="font-primary font-bold text-xl mb-2" style="color: var(--color-emerald);">
                             FLITE CHARTER
                         </div>
                         <div class="text-sm text-gray-500 mb-4">
@@ -84,22 +84,22 @@
 
                     <!-- Quick Links -->
                     <div>
-                        <h3 class="text-sm font-semibold uppercase tracking-wider mb-4" style="color: var(--flite-emerald);">Services</h3>
+                        <h3 class="text-sm font-semibold uppercase tracking-wider mb-4" style="color: var(--color-emerald);">Services</h3>
                         <ul class="space-y-2">
-                            <li><a href="#" class="text-gray-600 hover:text-[var(--flite-emerald)] text-sm transition-colors">Private Charter</a></li>
-                            <li><a href="#" class="text-gray-600 hover:text-[var(--flite-emerald)] text-sm transition-colors">Corporate Travel</a></li>
-                            <li><a href="#" class="text-gray-600 hover:text-[var(--flite-emerald)] text-sm transition-colors">Group Charter</a></li>
-                            <li><a href="#" class="text-gray-600 hover:text-[var(--flite-emerald)] text-sm transition-colors">Aircraft Management</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-[var(--color-emerald)] text-sm transition-colors">Private Charter</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-[var(--color-emerald)] text-sm transition-colors">Corporate Travel</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-[var(--color-emerald)] text-sm transition-colors">Group Charter</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-[var(--color-emerald)] text-sm transition-colors">Aircraft Management</a></li>
                         </ul>
                     </div>
 
                     <!-- Contact -->
                     <div>
-                        <h3 class="text-sm font-semibold uppercase tracking-wider mb-4" style="color: var(--flite-emerald);">Contact</h3>
+                        <h3 class="text-sm font-semibold uppercase tracking-wider mb-4" style="color: var(--color-emerald);">Contact</h3>
                         <ul class="space-y-2">
                             <li class="text-gray-600 text-sm">24/7 Charter Hotline</li>
-                            <li><a href="tel:+1234567890" class="hover:text-[var(--flite-gold)] text-sm transition-colors" style="color: var(--flite-emerald);">+1 (234) 567-8900</a></li>
-                            <li><a href="mailto:charter@flitecharter.com" class="text-gray-600 hover:text-[var(--flite-emerald)] text-sm transition-colors">charter@flitecharter.com</a></li>
+                            <li><a href="tel:+1234567890" class="hover:text-[var(--color-gold)] text-sm transition-colors" style="color: var(--color-emerald);">+1 (234) 567-8900</a></li>
+                            <li><a href="mailto:charter@flitecharter.com" class="text-gray-600 hover:text-[var(--color-emerald)] text-sm transition-colors">charter@flitecharter.com</a></li>
                         </ul>
                     </div>
                 </div>
@@ -110,9 +110,9 @@
                             © {{ date('Y') }} Flite Charter. All rights reserved.
                         </p>
                         <div class="mt-4 md:mt-0 flex space-x-6">
-                            <a href="#" class="text-gray-600 hover:text-[var(--flite-emerald)] text-sm transition-colors">Privacy Policy</a>
-                            <a href="#" class="text-gray-600 hover:text-[var(--flite-emerald)] text-sm transition-colors">Terms of Service</a>
-                            <a href="#" class="text-gray-600 hover:text-[var(--flite-emerald)] text-sm transition-colors">Safety</a>
+                            <a href="#" class="text-gray-600 hover:text-[var(--color-emerald)] text-sm transition-colors">Privacy Policy</a>
+                            <a href="#" class="text-gray-600 hover:text-[var(--color-emerald)] text-sm transition-colors">Terms of Service</a>
+                            <a href="#" class="text-gray-600 hover:text-[var(--color-emerald)] text-sm transition-colors">Safety</a>
                         </div>
                     </div>
                 </div>

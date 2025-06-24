@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Hero;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -87,12 +88,12 @@ class ManageHeroes extends Component
 
         if ($this->editingHeroId) {
             $hero = Hero::findOrFail($this->editingHeroId);
-            
+
             // Delete old image if new one is uploaded
             if ($this->image && $hero->image) {
-                \Storage::disk('public')->delete('images/' . $hero->image);
+                Storage::disk('public')->delete('images/' . $hero->image);
             }
-            
+
             $hero->update($heroData);
             $message = 'Hero successfully updated!';
         } else {
@@ -109,12 +110,12 @@ class ManageHeroes extends Component
     public function delete($heroId)
     {
         $hero = Hero::findOrFail($heroId);
-        
+
         // Delete image file if exists
         if ($hero->image) {
-            \Storage::disk('public')->delete('images/' . $hero->image);
+            Storage::disk('public')->delete('images/' . $hero->image);
         }
-        
+
         $hero->delete();
         session()->flash('message', 'Hero successfully deleted!');
 
