@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Administrator;
 
-use App\Livewire\Administrator\PermissionManagement;
+use App\Livewire\Administrator\ManagePermissions;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
@@ -24,13 +24,13 @@ class PermissionManagementTest extends TestCase
 
     public function test_can_render_permission_management_component()
     {
-        Livewire::test(PermissionManagement::class)
+        Livewire::test(ManagePermissions::class)
             ->assertStatus(200);
     }
 
     public function test_can_create_new_permission()
     {
-        Livewire::test(PermissionManagement::class)
+        Livewire::test(ManagePermissions::class)
             ->set('name', 'test-permission')
             ->call('save')
             ->assertHasNoErrors()
@@ -46,7 +46,7 @@ class PermissionManagementTest extends TestCase
     {
         $permission = Permission::create(['name' => 'original-permission']);
 
-        Livewire::test(PermissionManagement::class)
+        Livewire::test(ManagePermissions::class)
             ->call('edit', $permission->id)
             ->assertSet('editingPermissionId', $permission->id)
             ->assertSet('name', 'original-permission')
@@ -66,7 +66,7 @@ class PermissionManagementTest extends TestCase
     {
         $permission = Permission::create(['name' => 'delete-permission']);
 
-        Livewire::test(PermissionManagement::class)
+        Livewire::test(ManagePermissions::class)
             ->call('delete', $permission->id)
 ;
 
@@ -77,7 +77,7 @@ class PermissionManagementTest extends TestCase
 
     public function test_validates_required_name_field()
     {
-        Livewire::test(PermissionManagement::class)
+        Livewire::test(ManagePermissions::class)
             ->set('name', '')
             ->call('save')
             ->assertHasErrors(['name' => 'required']);
@@ -87,7 +87,7 @@ class PermissionManagementTest extends TestCase
     {
         Permission::create(['name' => 'existing-permission']);
 
-        Livewire::test(PermissionManagement::class)
+        Livewire::test(ManagePermissions::class)
             ->set('name', 'existing-permission')
             ->call('save')
             ->assertHasErrors(['name' => 'unique']);
@@ -99,7 +99,7 @@ class PermissionManagementTest extends TestCase
         Permission::create(['name' => 'second-permission']);
         Permission::create(['name' => 'another-name']);
 
-        $component = Livewire::test(PermissionManagement::class)
+        $component = Livewire::test(ManagePermissions::class)
             ->set('search', 'permission');
 
         $permissions = $component->get('permissions');
@@ -108,7 +108,7 @@ class PermissionManagementTest extends TestCase
 
     public function test_can_reset_form()
     {
-        Livewire::test(PermissionManagement::class)
+        Livewire::test(ManagePermissions::class)
             ->set('name', 'test-permission')
             ->set('editingPermissionId', 1)
             ->call('resetForm')
@@ -118,7 +118,7 @@ class PermissionManagementTest extends TestCase
 
     public function test_can_open_create_modal()
     {
-        Livewire::test(PermissionManagement::class)
+        Livewire::test(ManagePermissions::class)
             ->call('create')
             ->assertSet('name', '')
             ->assertSet('editingPermissionId', null)
@@ -132,7 +132,7 @@ class PermissionManagementTest extends TestCase
             Permission::create(['name' => "permission-{$i}"]);
         }
 
-        $component = Livewire::test(PermissionManagement::class);
+        $component = Livewire::test(ManagePermissions::class);
         $permissions = $component->get('permissions');
 
         $this->assertEquals(10, $permissions->perPage());

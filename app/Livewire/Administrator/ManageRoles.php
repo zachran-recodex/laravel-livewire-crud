@@ -8,7 +8,7 @@ use Livewire\WithPagination;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
-class RoleManagement extends Component
+class ManageRoles extends Component
 {
     use WithPagination;
 
@@ -104,6 +104,6 @@ class RoleManagement extends Component
 
     public function render()
     {
-        return view('livewire.administrator.role-management');
+        return view('livewire.administrator.manage-roles');
     }
 }

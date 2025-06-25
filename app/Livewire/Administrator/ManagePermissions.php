@@ -7,7 +7,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Spatie\Permission\Models\Permission;
 
-class PermissionManagement extends Component
+class ManagePermissions extends Component
 {
     use WithPagination;
 
@@ -91,6 +91,6 @@ class PermissionManagement extends Component
 
     public function render()
     {
-        return view('livewire.administrator.permission-management');
+        return view('livewire.administrator.manage-permissions');
     }
 }

@@ -12,9 +12,9 @@ Route::get('/dashboard', \App\Livewire\Dashboard::class)
 Route::middleware(['auth'])->group(function () {
     // Administrator Routes
     Route::middleware(['role:Super Admin'])->prefix('administrator')->name('admin.')->group(function () {
-        Route::get('/users', \App\Livewire\Administrator\UserManagement::class)->name('users');
-        Route::get('/roles', \App\Livewire\Administrator\RoleManagement::class)->name('roles');
-        Route::get('/permissions', \App\Livewire\Administrator\PermissionManagement::class)->name('permissions');
+        Route::get('/users', \App\Livewire\Administrator\ManageUsers::class)->name('users');
+        Route::get('/roles', \App\Livewire\Administrator\ManageRoles::class)->name('roles');
+        Route::get('/permissions', \App\Livewire\Administrator\ManagePermissions::class)->name('permissions');
     });
 
     Route::get('/heroes', \App\Livewire\ManageHeroes::class)->name('heroes');
