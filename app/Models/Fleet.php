@@ -4,21 +4,31 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Service extends Model
+class Fleet extends Model
 {
     protected $fillable = [
         'title',
+        'category',
         'description',
         'image',
+        'passengers',
+        'range',
         'features',
         'order',
-        'is_active'
+        'is_active',
     ];
 
     protected $casts = [
+        'passengers' => 'integer',
+        'range' => 'integer',
         'features' => 'array',
-        'is_active' => 'boolean'
+        'is_active' => 'boolean',
     ];
+
+    public function getFormattedRangeAttribute()
+    {
+        return number_format($this->range) . ' nm';
+    }
 
     public function scopeActive($query)
     {
@@ -28,6 +38,11 @@ class Service extends Model
     public function scopeOrdered($query)
     {
         return $query->orderBy('order');
+    }
+
+    public function scopeByCategory($query, $category)
+    {
+        return $query->where('category', $category);
     }
 
     public function addFeature($feature)

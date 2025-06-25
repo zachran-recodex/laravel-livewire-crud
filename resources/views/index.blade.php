@@ -232,8 +232,8 @@
                 </div>
             @empty
                 <!-- Message when no services available -->
-                <div class="col-span-1 md:col-span-2 lg:col-span-4 text-center py-12">
-                    <div class="bg-white rounded-xl shadow-lg p-8">
+                <div class="col-span-4 text-center py-12">
+                    <div class="bg-white p-8">
                         <svg class="w-16 h-16 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                         </svg>
@@ -258,149 +258,62 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Light Jet -->
-                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="h-64 bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1583473893312-3e30b7bc9a9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-                             alt="Light Jet"
-                             class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
-                        <div class="absolute top-4 right-4 bg-white bg-opacity-90 backdrop-blur px-3 py-1 rounded-full">
-                            <span class="text-sm font-semibold" style="color: var(--color-emerald);">Light Jet</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-primary text-xl font-bold mb-3" style="color: var(--color-emerald);">Citation CJ3+</h3>
-                        <p class="text-gray-600 mb-4">Perfect for short to medium-range flights with exceptional fuel efficiency and comfort for up to 7 passengers.</p>
-
-                        <div class="grid grid-cols-2 gap-4 mb-4">
-                            <div class="text-center">
-                                <div class="text-2xl font-bold" style="color: var(--color-gold);">7</div>
-                                <div class="text-xs text-gray-500">Passengers</div>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-2xl font-bold" style="color: var(--color-gold);">2,040</div>
-                                <div class="text-xs text-gray-500">Range (nm)</div>
+                @forelse($fleets as $fleet)
+                    <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                        <div class="h-64 bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden">
+                            @if($fleet->image)
+                                <img src="{{ Storage::url($fleet->image) }}" 
+                                     alt="{{ $fleet->title }}"
+                                     class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                            @else
+                                <div class="w-full h-full flex items-center justify-center bg-gray-200">
+                                    <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                            @endif
+                            <div class="absolute top-4 right-4 bg-white bg-opacity-90 backdrop-blur px-3 py-1 rounded-full">
+                                <span class="text-sm font-semibold" style="color: var(--color-emerald);">{{ $fleet->category }}</span>
                             </div>
                         </div>
+                        <div class="p-6">
+                            <h3 class="font-primary text-xl font-bold mb-3" style="color: var(--color-emerald);">{{ $fleet->title }}</h3>
+                            <p class="text-gray-600 mb-4">{{ $fleet->description }}</p>
 
-                        <ul class="space-y-2 text-sm text-gray-600">
-                            <li class="flex items-center">
-                                <svg class="w-4 h-4 mr-2" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                </svg>
-                                WiFi & Entertainment
-                            </li>
-                            <li class="flex items-center">
-                                <svg class="w-4 h-4 mr-2" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                </svg>
-                                Refreshment Center
-                            </li>
-                            <li class="flex items-center">
-                                <svg class="w-4 h-4 mr-2" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                </svg>
-                                Leather Seating
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                            <div class="grid grid-cols-2 gap-4 mb-4">
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold" style="color: var(--color-gold);">{{ $fleet->passengers }}</div>
+                                    <div class="text-xs text-gray-500">Passengers</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold" style="color: var(--color-gold);">{{ number_format($fleet->range) }}</div>
+                                    <div class="text-xs text-gray-500">Range (nm)</div>
+                                </div>
+                            </div>
 
-                <!-- Mid-Size Jet -->
-                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="h-64 bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-                             alt="Mid-Size Jet"
-                             class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
-                        <div class="absolute top-4 right-4 bg-white bg-opacity-90 backdrop-blur px-3 py-1 rounded-full">
-                            <span class="text-sm font-semibold" style="color: var(--color-emerald);">Mid-Size</span>
+                            @if($fleet->features && count($fleet->features) > 0)
+                                <ul class="space-y-2 text-sm text-gray-600">
+                                    @foreach($fleet->features as $feature)
+                                        <li class="flex items-center">
+                                            <svg class="w-4 h-4 mr-2" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                            </svg>
+                                            {{ $feature }}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
                         </div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="font-primary text-xl font-bold mb-3" style="color: var(--color-emerald);">Hawker 850XP</h3>
-                        <p class="text-gray-600 mb-4">Ideal for transcontinental flights with spacious cabin and advanced avionics for up to 8 passengers.</p>
-
-                        <div class="grid grid-cols-2 gap-4 mb-4">
-                            <div class="text-center">
-                                <div class="text-2xl font-bold" style="color: var(--color-gold);">8</div>
-                                <div class="text-xs text-gray-500">Passengers</div>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-2xl font-bold" style="color: var(--color-gold);">2,642</div>
-                                <div class="text-xs text-gray-500">Range (nm)</div>
-                            </div>
-                        </div>
-
-                        <ul class="space-y-2 text-sm text-gray-600">
-                            <li class="flex items-center">
-                                <svg class="w-4 h-4 mr-2" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                </svg>
-                                Full Galley Kitchen
-                            </li>
-                            <li class="flex items-center">
-                                <svg class="w-4 h-4 mr-2" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                </svg>
-                                Conference Seating
-                            </li>
-                            <li class="flex items-center">
-                                <svg class="w-4 h-4 mr-2" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                </svg>
-                                Satellite Communication
-                            </li>
-                        </ul>
+                @empty
+                    <div class="col-span-full text-center py-12">
+                        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                        </svg>
+                        <h3 class="mt-2 text-sm font-medium text-gray-900">No fleets available</h3>
+                        <p class="mt-1 text-sm text-gray-500">Fleet information will be displayed here once added.</p>
                     </div>
-                </div>
-
-                <!-- Heavy Jet -->
-                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="h-64 bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-                             alt="Heavy Jet"
-                             class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
-                        <div class="absolute top-4 right-4 bg-white bg-opacity-90 backdrop-blur px-3 py-1 rounded-full">
-                            <span class="text-sm font-semibold" style="color: var(--color-emerald);">Heavy Jet</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-primary text-xl font-bold mb-3" style="color: var(--color-emerald);">Gulfstream G550</h3>
-                        <p class="text-gray-600 mb-4">Ultra-long range capability with luxurious amenities and spacious cabin for up to 14 passengers.</p>
-
-                        <div class="grid grid-cols-2 gap-4 mb-4">
-                            <div class="text-center">
-                                <div class="text-2xl font-bold" style="color: var(--color-gold);">14</div>
-                                <div class="text-xs text-gray-500">Passengers</div>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-2xl font-bold" style="color: var(--color-gold);">6,750</div>
-                                <div class="text-xs text-gray-500">Range (nm)</div>
-                            </div>
-                        </div>
-
-                        <ul class="space-y-2 text-sm text-gray-600">
-                            <li class="flex items-center">
-                                <svg class="w-4 h-4 mr-2" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                </svg>
-                                Private Bedroom
-                            </li>
-                            <li class="flex items-center">
-                                <svg class="w-4 h-4 mr-2" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                </svg>
-                                Full Entertainment System
-                            </li>
-                            <li class="flex items-center">
-                                <svg class="w-4 h-4 mr-2" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                </svg>
-                                Global High-Speed WiFi
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                @endforelse
             </div>
 
             <!-- CTA Button -->
