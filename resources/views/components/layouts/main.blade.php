@@ -21,43 +21,127 @@
         <!-- Navigation -->
         <nav id="navbar" class="fixed w-full z-50 transition-all duration-300" style="background-color: transparent;">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between items-center h-16">
-                    <!-- Logo -->
-                    <div class="flex-shrink-0">
-                        <a href="/" class="flex items-center">
-                            <img src="/images/logo.png" alt="Flite Charter - Your Instant Air Transport Solutions" class="h-12 w-auto">
-                        </a>
+                <div class="flex items-center h-16 relative">
+                    <!-- Hamburger Menu Button (Left) -->
+                    <div class="flex items-center">
+                        <button type="button" id="sidebar-toggle" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-[var(--color-gold)] hover:bg-white/10 focus:outline-none transition-colors">
+                            <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
                     </div>
 
-                    <!-- Desktop Navigation -->
-                    <div class="hidden md:block">
-                        <div class="ml-10 flex items-baseline space-x-8">
+                    <!-- Left Navigation -->
+                    <div class="hidden md:flex flex-1 ml-8">
+                        <div class="flex items-baseline space-x-8">
                             <a href="#charter" class="text-white hover:text-[var(--color-gold)] px-3 py-2 text-sm font-medium transition-colors">Charter</a>
                             <a href="#fleet" class="text-white hover:text-[var(--color-gold)] px-3 py-2 text-sm font-medium transition-colors">Fleet</a>
                             <a href="#services" class="text-white hover:text-[var(--color-gold)] px-3 py-2 text-sm font-medium transition-colors">Services</a>
-                            <a href="#about" class="text-white hover:text-[var(--color-gold)] px-3 py-2 text-sm font-medium transition-colors">About</a>
-                            <a href="#contact" class="text-white hover:text-[var(--color-gold)] px-3 py-2 text-sm font-medium transition-colors">Contact</a>
                         </div>
                     </div>
 
-                    <!-- CTA Button -->
-                    <div class="hidden md:block">
-                        <a href="#quote" class="inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white hover:bg-opacity-90 transition-colors" style="background-color: var(--color-gold);">
-                            Get Quote
+                    <!-- Centered Logo -->
+                    <div class="absolute left-1/2 transform -translate-x-1/2">
+                        <a href="/" class="flex items-center">
+                            <img src="{{ asset('images/logo.png') }}" alt="Flite Charter - Your Instant Air Transport Solutions" class="h-12 w-auto">
                         </a>
                     </div>
 
-                    <!-- Mobile menu button -->
-                    <div class="md:hidden">
+                    <!-- Right Navigation -->
+                    <div class="hidden md:flex flex-1 justify-end">
+                        <div class="flex items-baseline space-x-8">
+                            <a href="#about" class="text-white hover:text-[var(--color-gold)] px-3 py-2 text-sm font-medium transition-colors">About</a>
+                            <a href="#contact" class="text-white hover:text-[var(--color-gold)] px-3 py-2 text-sm font-medium transition-colors">Contact</a>
+                            <a href="#quote" class="inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white hover:bg-opacity-90 transition-colors" style="background-color: var(--color-gold);">
+                                Get Quote
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Right Menu -->
+                    <div class="md:hidden ml-auto">
                         <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-[var(--color-gold)] hover:bg-white/10 focus:outline-none">
                             <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
                             </svg>
                         </button>
                     </div>
                 </div>
             </div>
         </nav>
+
+        <!-- Sidebar -->
+        <div id="sidebar" class="fixed top-0 left-0 h-full w-80 bg-white shadow-lg z-50 transform -translate-x-full transition-transform duration-300 ease-in-out">
+            <div class="p-6">
+                <!-- Sidebar Header -->
+                <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center">
+                        <img src="{{ asset('images/logo.png') }}" alt="Flite Charter" class="h-10 w-auto">
+                    </div>
+                    <button type="button" id="sidebar-close" class="p-2 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors">
+                        <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Sidebar Navigation -->
+                <nav class="space-y-4">
+                    <a href="#charter" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-[var(--color-emerald)] rounded-lg transition-colors">
+                        <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                        </svg>
+                        Charter Services
+                    </a>
+                    <a href="#fleet" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-[var(--color-emerald)] rounded-lg transition-colors">
+                        <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                        Our Fleet
+                    </a>
+                    <a href="#services" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-[var(--color-emerald)] rounded-lg transition-colors">
+                        <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2m-8 0H6a2 2 0 00-2 2v6a2 2 0 002 2h12a2 2 0 002-2V8a2 2 0 00-2-2h-2"></path>
+                        </svg>
+                        Services
+                    </a>
+                    <a href="#about" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-[var(--color-emerald)] rounded-lg transition-colors">
+                        <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        About Us
+                    </a>
+                    <a href="#contact" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-[var(--color-emerald)] rounded-lg transition-colors">
+                        <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                        Contact
+                    </a>
+                </nav>
+
+                <!-- CTA Button in Sidebar -->
+                <div class="mt-8 pt-8 border-t border-gray-200">
+                    <a href="#quote" class="block w-full text-center px-6 py-3 text-white rounded-lg hover:bg-opacity-90 transition-colors" style="background-color: var(--color-gold);">
+                        Get Quote
+                    </a>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="mt-8 p-4 bg-gray-50 rounded-lg">
+                    <h4 class="font-semibold text-gray-900 mb-2">24/7 Charter Hotline</h4>
+                    <p class="text-sm text-gray-600 mb-2">
+                        <a href="tel:+1234567890" class="hover:text-[var(--color-emerald)] transition-colors">
+                            +1 (234) 567-8900
+                        </a>
+                    </p>
+                    <p class="text-sm text-gray-600">
+                        <a href="mailto:charter@flitecharter.com" class="hover:text-[var(--color-emerald)] transition-colors">
+                            charter@flitecharter.com
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
 
         <!-- Main Content -->
         <main>
