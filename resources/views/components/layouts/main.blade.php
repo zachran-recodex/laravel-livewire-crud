@@ -7,9 +7,10 @@
         <title>{{ $title ?? 'Flite Charter - Your Instant Air Transport Solutions' }}</title>
         <meta name="description" content="Premium private jet charter services that prioritize speed, discretion, and comfort. Your instant air transport solutions for executives and premium travelers.">
 
-        <link rel="icon" href="/favicon.ico" sizes="any">
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/apple-touch-icon.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/favicon-16x16.png') }}">
+        <link rel="manifest" href="{{ asset('/site.webmanifest') }}">
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=inter:300,400,500,600,700&display=swap" rel="stylesheet" />
@@ -17,7 +18,7 @@
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-secondary bg-white antialiased">
+    <body class="font-primary bg-white antialiased">
         <!-- Navigation -->
         <nav id="navbar" class="fixed w-full z-50 transition-all duration-300" style="background-color: transparent;">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -56,15 +57,6 @@
                                 Get Quote
                             </a>
                         </div>
-                    </div>
-
-                    <!-- Mobile Right Menu -->
-                    <div class="md:hidden ml-auto">
-                        <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-[var(--color-gold)] hover:bg-white/10 focus:outline-none">
-                            <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                            </svg>
-                        </button>
                     </div>
                 </div>
             </div>
