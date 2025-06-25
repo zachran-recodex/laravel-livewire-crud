@@ -262,7 +262,7 @@
                     <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                         <div class="h-64 bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden">
                             @if($fleet->image)
-                                <img src="{{ Storage::url($fleet->image) }}" 
+                                <img src="{{ Storage::url($fleet->image) }}"
                                      alt="{{ $fleet->title }}"
                                      class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
                             @else
@@ -328,235 +328,216 @@
         </div>
     </section>
 
-    <!-- Popular Destinations Section -->
-    <section id="destinations" class="py-20 bg-gray-50">
+    <!-- About Us Section -->
+    <section id="about" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="font-primary text-4xl font-bold mb-4" style="color: var(--color-emerald);">Popular Destinations</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Fly to the world's most exclusive destinations with our premium charter services. From business hubs to luxury getaways.
-                </p>
-            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="font-primary text-4xl font-bold mb-6" style="color: var(--color-emerald);">About Flite Charter</h2>
+                    <p class="text-xl text-gray-600 mb-8">
+                        With over 10 years of experience in the private aviation industry, Flite Charter has become the premier choice for luxury jet charter services.
+                    </p>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- New York -->
-                <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="h-80 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                        <div class="absolute bottom-6 left-6 text-white">
-                            <h3 class="font-primary text-xl font-bold mb-1">New York</h3>
-                            <p class="text-sm opacity-90">Business & Finance Hub</p>
-                            <div class="flex items-center mt-2 text-sm">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style="background-color: var(--color-gold);">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
                                 </svg>
-                                2.5 hrs from Miami
+                            </div>
+                            <div>
+                                <h3 class="font-primary text-xl font-bold mb-2" style="color: var(--color-emerald);">Trusted Experience</h3>
+                                <p class="text-gray-600">Serving thousands of corporate and individual clients with consistent and reliable service standards.</p>
                             </div>
                         </div>
-                        <div class="absolute top-4 right-4 bg-white bg-opacity-90 backdrop-blur px-3 py-1 rounded-full">
-                            <span class="text-sm font-semibold" style="color: var(--color-emerald);">Popular</span>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- London -->
-                <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="h-80 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                        <div class="absolute bottom-6 left-6 text-white">
-                            <h3 class="font-primary text-xl font-bold mb-1">London</h3>
-                            <p class="text-sm opacity-90">European Gateway</p>
-                            <div class="flex items-center mt-2 text-sm">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style="background-color: var(--color-gold);">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
                                 </svg>
-                                8 hrs from New York
+                            </div>
+                            <div>
+                                <h3 class="font-primary text-xl font-bold mb-2" style="color: var(--color-emerald);">Professional Team</h3>
+                                <p class="text-gray-600">Supported by experienced pilots and trained crew members dedicated to providing the best service.</p>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- Dubai -->
-                <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="h-80 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                        <div class="absolute bottom-6 left-6 text-white">
-                            <h3 class="font-primary text-xl font-bold mb-1">Dubai</h3>
-                            <p class="text-sm opacity-90">Luxury & Business</p>
-                            <div class="flex items-center mt-2 text-sm">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style="background-color: var(--color-gold);">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
-                                14 hrs from New York
+                            </div>
+                            <div>
+                                <h3 class="font-primary text-xl font-bold mb-2" style="color: var(--color-emerald);">Global Reach</h3>
+                                <p class="text-gray-600">Serving domestic and international routes with access to over 5,000 airports worldwide.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Monaco -->
-                <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="h-80 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1549068106-b024baf5062d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                        <div class="absolute bottom-6 left-6 text-white">
-                            <h3 class="font-primary text-xl font-bold mb-1">Monaco</h3>
-                            <p class="text-sm opacity-90">Exclusive Getaway</p>
-                            <div class="flex items-center mt-2 text-sm">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                9 hrs from New York
-                            </div>
-                        </div>
-                        <div class="absolute top-4 right-4 bg-white bg-opacity-90 backdrop-blur px-3 py-1 rounded-full">
-                            <span class="text-sm font-semibold" style="color: var(--color-gold);">VIP</span>
+                <div class="relative">
+                    <div class="bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1556388158-158ea5ccacbd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                             alt="Flite Charter Team"
+                             class="w-full h-96 object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-8 left-8 text-white">
+                            <h4 class="font-primary text-2xl font-bold mb-2">Our Mission</h4>
+                            <p class="text-gray-200">To provide safe, comfortable, and unforgettable flight experiences for every journey you take.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Additional Info -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-                <div class="text-center">
-                    <div class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style="background-color: var(--color-emerald);">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="font-primary text-xl font-bold mb-2" style="color: var(--color-emerald);">Global Reach</h3>
-                    <p class="text-gray-600">Fly to over 5,000 airports worldwide with our extensive network and partnerships.</p>
+            <!-- Statistics -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 text-center">
+                <div>
+                    <div class="text-4xl font-bold mb-2" style="color: var(--color-emerald);">10+</div>
+                    <div class="text-gray-600">Years Experience</div>
                 </div>
-
-                <div class="text-center">
-                    <div class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style="background-color: var(--color-gold);">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="font-primary text-xl font-bold mb-2" style="color: var(--color-emerald);">Customs & Immigration</h3>
-                    <p class="text-gray-600">Expedited customs clearance and VIP immigration services at all major destinations.</p>
+                <div>
+                    <div class="text-4xl font-bold mb-2" style="color: var(--color-emerald);">500+</div>
+                    <div class="text-gray-600">Successful Flights</div>
                 </div>
-
-                <div class="text-center">
-                    <div class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style="background-color: var(--color-brown);">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="font-primary text-xl font-bold mb-2" style="color: var(--color-emerald);">Ground Services</h3>
-                    <p class="text-gray-600">Luxury ground transportation and concierge services available at all destinations.</p>
+                <div>
+                    <div class="text-4xl font-bold mb-2" style="color: var(--color-emerald);">50+</div>
+                    <div class="text-gray-600">Available Fleet</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold mb-2" style="color: var(--color-emerald);">100%</div>
+                    <div class="text-gray-600">Safety Record</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Client Testimonials Section -->
-    <section class="py-20 bg-white">
+    <!-- Safety Section -->
+    <section id="safety" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="font-primary text-4xl font-bold mb-4" style="color: var(--color-emerald);">What Our Clients Say</h2>
+                <h2 class="font-primary text-4xl font-bold mb-4" style="color: var(--color-emerald);">Our Safety Commitment</h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Trusted by executives, celebrities, and discerning travelers worldwide for our exceptional service and reliability.
+                    Safety is our top priority. With the highest safety standards and strict protocols, we ensure every flight is safe and reliable.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300">
-                    <div class="flex items-center mb-4">
-                        <div class="flex space-x-1">
-                            <svg class="w-5 h-5" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="w-5 h-5" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="w-5 h-5" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="w-5 h-5" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="w-5 h-5" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-16">
+                <!-- Safety Content -->
+                <div>
+                    <div class="space-y-8">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0" style="background-color: var(--color-emerald);">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.25-1.5a4.5 4.5 0 00-9 0v1.032c0 .307-.036.607-.106.893.073.199.163.398.275.588.113.19.249.369.407.525C8.93 14.54 10.426 15 12 15s3.07-.46 4.124-1.462c.158-.156.294-.335.407-.525.112-.19.202-.389.275-.588a4.492 4.492 0 00-.106-.893V9.5z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-primary text-2xl font-bold mb-3" style="color: var(--color-emerald);">International Certification</h3>
+                                <p class="text-gray-600">All our fleet have international safety certifications and undergo routine inspections to ensure optimal conditions.</p>
+                            </div>
                         </div>
-                    </div>
-                    <p class="text-gray-600 mb-6 italic">"Exceptional service from booking to landing. The crew was professional, the aircraft immaculate, and the entire experience exceeded our expectations. Flite Charter has become our exclusive aviation partner."</p>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center mr-4">
-                            <span class="font-bold text-gray-600">JS</span>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0" style="background-color: var(--color-gold);">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-primary text-2xl font-bold mb-3" style="color: var(--color-emerald);">Experienced Pilots</h3>
+                                <p class="text-gray-600">Our pilot team has an average flight experience of over 5,000 hours and undergoes continuous safety training.</p>
+                            </div>
                         </div>
-                        <div>
-                            <div class="font-semibold" style="color: var(--color-emerald);">James Sullivan</div>
-                            <div class="text-sm text-gray-500">CEO, Sullivan Enterprises</div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0" style="background-color: var(--color-brown);">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-primary text-2xl font-bold mb-3" style="color: var(--color-emerald);">Premium Maintenance</h3>
+                                <p class="text-gray-600">Comprehensive preventive maintenance program with certified technicians and original spare parts to maintain optimal performance.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Testimonial 2 -->
-                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300">
-                    <div class="flex items-center mb-4">
-                        <div class="flex space-x-1">
-                            <svg class="w-5 h-5" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="w-5 h-5" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="w-5 h-5" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="w-5 h-5" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="w-5 h-5" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 mb-6 italic">"Time is everything in our business. Flite Charter understands that perfectly. Their punctuality, flexibility, and attention to detail make them indispensable for our executive travel needs."</p>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center mr-4">
-                            <span class="font-bold text-gray-600">MR</span>
-                        </div>
-                        <div>
-                            <div class="font-semibold" style="color: var(--color-emerald);">Maria Rodriguez</div>
-                            <div class="text-sm text-gray-500">VP Operations, Global Ventures</div>
+                <!-- Safety Image -->
+                <div class="relative">
+                    <div class="bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                             alt="Aircraft Safety Check"
+                             class="w-full h-96 object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-8 left-8 text-white">
+                            <h4 class="font-primary text-2xl font-bold mb-2">Comprehensive Inspection</h4>
+                            <p class="text-gray-200">Every aircraft undergoes strict inspection before each flight to ensure maximum safety.</p>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Testimonial 3 -->
-                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300">
-                    <div class="flex items-center mb-4">
-                        <div class="flex space-x-1">
-                            <svg class="w-5 h-5" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="w-5 h-5" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="w-5 h-5" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="w-5 h-5" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="w-5 h-5" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                        </div>
+            <!-- Safety Statistics -->
+            <div class="bg-gray-50 rounded-2xl p-8">
+                <h3 class="font-primary text-3xl font-bold text-center mb-12" style="color: var(--color-emerald);">Our Safety Record</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div>
+                        <div class="text-4xl font-bold mb-2" style="color: var(--color-emerald);">100%</div>
+                        <div class="text-gray-600">Safety Record</div>
+                        <div class="text-sm text-gray-500 mt-1">No Incidents</div>
                     </div>
-                    <p class="text-gray-600 mb-6 italic">"Flying with Flite Charter is like having your own private airline. The level of personalization and care they provide is unmatched. From custom catering to ground transportation, everything is seamless."</p>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center mr-4">
-                            <span class="font-bold text-gray-600">DC</span>
-                        </div>
-                        <div>
-                            <div class="font-semibold" style="color: var(--color-emerald);">David Chen</div>
-                            <div class="text-sm text-gray-500">Managing Partner, Chen & Associates</div>
-                        </div>
+                    <div>
+                        <div class="text-4xl font-bold mb-2" style="color: var(--color-emerald);">5000+</div>
+                        <div class="text-gray-600">Pilot Flight Hours</div>
+                        <div class="text-sm text-gray-500 mt-1">Average Experience</div>
                     </div>
+                    <div>
+                        <div class="text-4xl font-bold mb-2" style="color: var(--color-emerald);">24/7</div>
+                        <div class="text-gray-600">Technical Support</div>
+                        <div class="text-sm text-gray-500 mt-1">Always Ready</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold mb-2" style="color: var(--color-emerald);">ISO</div>
+                        <div class="text-gray-600">Certified</div>
+                        <div class="text-sm text-gray-500 mt-1">International Standards</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Safety Features -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+                <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border">
+                    <div class="w-16 h-16 rounded-full mx-auto mb-6 flex items-center justify-center" style="background-color: var(--color-emerald);">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-primary text-xl font-bold text-center mb-4" style="color: var(--color-emerald);">Weather Monitoring</h3>
+                    <p class="text-gray-600 text-center">Real-time weather monitoring system to ensure optimal flying conditions on every route.</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border">
+                    <div class="w-16 h-16 rounded-full mx-auto mb-6 flex items-center justify-center" style="background-color: var(--color-gold);">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-primary text-xl font-bold text-center mb-4" style="color: var(--color-emerald);">Advanced Navigation</h3>
+                    <p class="text-gray-600 text-center">State-of-the-art navigation technology with GPS and radar systems for high precision in every flight.</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border">
+                    <div class="w-16 h-16 rounded-full mx-auto mb-6 flex items-center justify-center" style="background-color: var(--color-brown);">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-primary text-xl font-bold text-center mb-4" style="color: var(--color-emerald);">Emergency Protocols</h3>
+                    <p class="text-gray-600 text-center">Comprehensive emergency protocols and trained crew to handle various emergency situations.</p>
                 </div>
             </div>
         </div>
