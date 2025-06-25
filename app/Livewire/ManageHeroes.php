@@ -81,9 +81,7 @@ class ManageHeroes extends Component
 
         // Handle image upload
         if ($this->image) {
-            $imageName = time() . '_' . $this->image->getClientOriginalName();
-            $this->image->storeAs('images', $imageName, 'public');
-            $heroData['image'] = $imageName;
+            $heroData['image'] = $this->image->store('heroes', 'public');
         }
 
         if ($this->editingHeroId) {
@@ -91,7 +89,7 @@ class ManageHeroes extends Component
 
             // Delete old image if new one is uploaded
             if ($this->image && $hero->image) {
-                Storage::disk('public')->delete('images/' . $hero->image);
+                Storage::disk('public')->delete($hero->image);
             }
 
             $hero->update($heroData);
@@ -113,7 +111,7 @@ class ManageHeroes extends Component
 
         // Delete image file if exists
         if ($hero->image) {
-            Storage::disk('public')->delete('images/' . $hero->image);
+            Storage::disk('public')->delete($hero->image);
         }
 
         $hero->delete();

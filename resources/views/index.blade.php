@@ -1,299 +1,249 @@
 <x-layouts.main title="Flite Charter - Premium Private Jet Charter Services">
     <!-- Hero Carousel Section -->
     <section class="hero-carousel">
-        <div x-data="{
-            slides: [
-                @forelse($heroes as $hero)
-                {
-                    imgSrc: '{{ $hero->image ? asset('storage/images/' . $hero->image) : 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80' }}',
-                    imgAlt: '{{ $hero->title }}',
-                    title: '{{ $hero->title }}',
-                    ctaUrl: '#fleet',
-                    ctaText: 'View Our Fleet',
-                },
-                @empty
-                {
-                    imgSrc: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80',
-                    imgAlt: 'Premium Private Jet Service',
-                    title: 'Your Instant Air Transport Solutions',
-                    ctaUrl: '#fleet',
-                    ctaText: 'View Our Fleet',
-                },
-                {
-                    imgSrc: 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2118&q=80',
-                    imgAlt: 'Elite Safety Standards',
-                    title: 'Elite Safety Standards Guaranteed',
-                    ctaUrl: '#services',
-                    ctaText: 'Our Services',
-                },
-                {
-                    imgSrc: 'https://images.unsplash.com/photo-1583473893312-3e30b7bc9a9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-                    imgAlt: 'Global Destinations',
-                    title: 'Global Destinations Await',
-                    ctaUrl: '#destinations',
-                    ctaText: 'Explore Destinations',
-                },
-                @endforelse
-            ],
-            currentSlideIndex: 1,
-            autoplayIntervalTime: 5000,
-            isPaused: false,
-            autoplayInterval: null,
-            
-            previous() {
-                if (this.currentSlideIndex > 1) {
-                    this.currentSlideIndex = this.currentSlideIndex - 1
-                } else {
-                    this.currentSlideIndex = this.slides.length
-                }
-            },
-            
-            next() {
-                if (this.currentSlideIndex < this.slides.length) {
-                    this.currentSlideIndex = this.currentSlideIndex + 1
-                } else {
-                    this.currentSlideIndex = 1
-                }
-            },
-            
-            autoplay() {
-                this.autoplayInterval = setInterval(() => {
-                    if (!this.isPaused) {
-                        this.next()
+        @forelse($heroes as $hero)
+            @if($loop->first)
+                <div x-data="{
+                slides: [
+                    @foreach($heroes as $heroItem)
+                    {
+                        imgSrc: '{{ $heroItem->image ? Storage::url($heroItem->image) : 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80' }}',
+                        imgAlt: '{{ $heroItem->title }}',
+                        title: '{{ $heroItem->title }}',
+                        ctaUrl: '#fleet',
+                        ctaText: 'View Our Fleet',
+                    },
+                    @endforeach
+                ],
+                currentSlideIndex: 1,
+                autoplayIntervalTime: 5000,
+                isPaused: false,
+                autoplayInterval: null,
+
+                previous() {
+                    if (this.currentSlideIndex > 1) {
+                        this.currentSlideIndex = this.currentSlideIndex - 1
+                    } else {
+                        this.currentSlideIndex = this.slides.length
                     }
-                }, this.autoplayIntervalTime)
-            },
-            
-            setAutoplayInterval(newIntervalTime) {
-                clearInterval(this.autoplayInterval)
-                this.autoplayIntervalTime = newIntervalTime
-                this.autoplay()
-            },
-            
-            formatTitle(title) {
-                const words = title.split(' ');
-                if (words.length <= 2) {
-                    return { firstPart: '', lastPart: title };
+                },
+
+                next() {
+                    if (this.currentSlideIndex < this.slides.length) {
+                        this.currentSlideIndex = this.currentSlideIndex + 1
+                    } else {
+                        this.currentSlideIndex = 1
+                    }
+                },
+
+                autoplay() {
+                    this.autoplayInterval = setInterval(() => {
+                        if (!this.isPaused) {
+                            this.next()
+                        }
+                    }, this.autoplayIntervalTime)
+                },
+
+                setAutoplayInterval(newIntervalTime) {
+                    clearInterval(this.autoplayInterval)
+                    this.autoplayIntervalTime = newIntervalTime
+                    this.autoplay()
+                },
+
+                formatTitle(title) {
+                    const words = title.split(' ');
+                    if (words.length <= 2) {
+                        return { firstPart: '', lastPart: title };
+                    }
+                    const midPoint = Math.ceil(words.length / 2);
+                    return {
+                        firstPart: words.slice(0, midPoint).join(' '),
+                        lastPart: words.slice(midPoint).join(' ')
+                    };
                 }
-                const midPoint = Math.ceil(words.length / 2);
-                return {
-                    firstPart: words.slice(0, midPoint).join(' '),
-                    lastPart: words.slice(midPoint).join(' ')
-                };
-            }
-        }" 
-        x-init="autoplay" 
-        class="relative w-full overflow-hidden">
+            }"
+                     x-init="autoplay"
+                     class="relative w-full overflow-hidden">
 
-            <!-- Previous Button -->
-            <button type="button" 
-                    class="absolute left-5 top-1/2 z-20 flex rounded-full -translate-y-1/2 items-center justify-center bg-white/30 backdrop-blur-sm p-3 text-white transition hover:bg-white/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:outline-offset-0" 
-                    aria-label="previous slide" 
-                    x-on:click="previous()">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="3" class="size-6 pr-0.5" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                </svg>
-            </button>
+                    <!-- Previous Button -->
+                    <button type="button"
+                            class="absolute left-5 top-1/2 z-20 flex rounded-full -translate-y-1/2 items-center justify-center bg-white/30 backdrop-blur-sm p-3 text-white transition hover:bg-white/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:outline-offset-0"
+                            aria-label="previous slide"
+                            x-on:click="previous()">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="3" class="size-6 pr-0.5" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                        </svg>
+                    </button>
 
-            <!-- Next Button -->
-            <button type="button" 
-                    class="absolute right-5 top-1/2 z-20 flex rounded-full -translate-y-1/2 items-center justify-center bg-white/30 backdrop-blur-sm p-3 text-white transition hover:bg-white/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:outline-offset-0" 
-                    aria-label="next slide" 
-                    x-on:click="next()">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="3" class="size-6 pl-0.5" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                </svg>
-            </button>
+                    <!-- Next Button -->
+                    <button type="button"
+                            class="absolute right-5 top-1/2 z-20 flex rounded-full -translate-y-1/2 items-center justify-center bg-white/30 backdrop-blur-sm p-3 text-white transition hover:bg-white/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:outline-offset-0"
+                            aria-label="next slide"
+                            x-on:click="next()">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="3" class="size-6 pl-0.5" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </button>
 
-            <!-- Slides Container -->
-            <div class="relative h-screen w-full">
-                <template x-for="(slide, index) in slides" :key="index">
-                    <div x-show="currentSlideIndex == index + 1" 
-                         class="absolute inset-0" 
-                         x-transition:enter="transition-opacity duration-1000 ease-in-out"
-                         x-transition:enter-start="opacity-0"
-                         x-transition:enter-end="opacity-100"
-                         x-transition:leave="transition-opacity duration-1000 ease-in-out"
-                         x-transition:leave-start="opacity-100"
-                         x-transition:leave-end="opacity-0">
-                        
-                        <!-- Background Image -->
-                        <img class="absolute w-full h-full inset-0 object-cover" 
-                             x-bind:src="slide.imgSrc" 
-                             x-bind:alt="slide.imgAlt" />
-                        
-                        <!-- Overlay -->
-                        <div class="absolute inset-0 bg-black/40"></div>
-                        <div class="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent"></div>
-                        
-                        <!-- Content -->
-                        <div class="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8">
-                            <div class="max-w-4xl mx-auto">
-                                <h1 class="font-primary text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-white mb-8"
-                                    x-data="{ titleParts: formatTitle(slide.title) }">
-                                    <span x-text="titleParts.firstPart"></span>
-                                    <template x-if="titleParts.firstPart && titleParts.lastPart">
-                                        <br>
-                                    </template>
-                                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600" 
-                                          x-text="titleParts.lastPart || titleParts.firstPart"></span>
-                                </h1>
-                                
-                                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                                    <a x-bind:href="slide.ctaUrl" 
-                                       class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold border-2 border-white text-white rounded-lg hover:bg-white hover:text-gray-900 transition-all duration-300 transform hover:scale-105">
-                                        <span x-text="slide.ctaText"></span>
-                                    </a>
+                    <!-- Slides Container -->
+                    <div class="relative h-screen w-full">
+                        <template x-for="(slide, index) in slides" :key="index">
+                            <div x-show="currentSlideIndex == index + 1"
+                                 class="absolute inset-0"
+                                 x-transition:enter="transition-opacity duration-1000 ease-in-out"
+                                 x-transition:enter-start="opacity-0"
+                                 x-transition:enter-end="opacity-100"
+                                 x-transition:leave="transition-opacity duration-1000 ease-in-out"
+                                 x-transition:leave-start="opacity-100"
+                                 x-transition:leave-end="opacity-0">
+
+                                <!-- Background Image -->
+                                <img class="absolute w-full h-full inset-0 object-cover"
+                                     x-bind:src="slide.imgSrc"
+                                     x-bind:alt="slide.imgAlt" />
+
+                                <!-- Overlay -->
+                                <div class="absolute inset-0 bg-black/40"></div>
+                                <div class="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent"></div>
+
+                                <!-- Content -->
+                                <div class="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8">
+                                    <div class="max-w-4xl mx-auto">
+                                        <h1 class="font-primary text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-white mb-8"
+                                            x-data="{ titleParts: formatTitle(slide.title) }">
+                                            <span x-text="titleParts.firstPart"></span>
+                                            <template x-if="titleParts.firstPart && titleParts.lastPart">
+                                                <br>
+                                            </template>
+                                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600"
+                                                  x-text="titleParts.lastPart || titleParts.firstPart"></span>
+                                        </h1>
+
+                                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                            <a x-bind:href="slide.ctaUrl"
+                                               class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold border-2 border-white text-white rounded-lg hover:bg-white hover:text-gray-900 transition-all duration-300 transform hover:scale-105">
+                                                <span x-text="slide.ctaText"></span>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </template>
                     </div>
-                </template>
-            </div>
 
-            <!-- Indicators -->
-            <div class="absolute bottom-5 left-1/2 z-20 flex -translate-x-1/2 gap-3 bg-white/20 backdrop-blur-sm px-3 py-2 rounded-full" 
-                 role="group" 
-                 aria-label="slides">
-                <template x-for="(slide, index) in slides" :key="index">
-                    <button class="size-3 rounded-full transition-all duration-300" 
-                            x-on:click="currentSlideIndex = index + 1" 
-                            x-bind:class="[currentSlideIndex === index + 1 ? 'bg-yellow-400 scale-125' : 'bg-white/50 hover:bg-white/75']" 
-                            x-bind:aria-label="'slide ' + (index + 1)">
+                    <!-- Indicators -->
+                    <div class="absolute bottom-5 left-1/2 z-20 flex -translate-x-1/2 gap-3 bg-white/20 backdrop-blur-sm px-3 py-2 rounded-full"
+                         role="group"
+                         aria-label="slides">
+                        <template x-for="(slide, index) in slides" :key="index">
+                            <button class="size-3 rounded-full transition-all duration-300"
+                                    x-on:click="currentSlideIndex = index + 1"
+                                    x-bind:class="[currentSlideIndex === index + 1 ? 'bg-yellow-400 scale-125' : 'bg-white/50 hover:bg-white/75']"
+                                    x-bind:aria-label="'slide ' + (index + 1)">
+                            </button>
+                        </template>
+                    </div>
+
+                    <!-- Pause/Play Button -->
+                    <button type="button"
+                            class="absolute bottom-5 right-5 z-20 rounded-full bg-white/20 backdrop-blur-sm p-3 text-white/70 hover:text-white hover:bg-white/30 transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                            aria-label="pause carousel"
+                            x-on:click="(isPaused = !isPaused), setAutoplayInterval(autoplayIntervalTime)"
+                            x-bind:aria-pressed="isPaused">
+
+                        <!-- Play Icon -->
+                        <svg x-cloak x-show="isPaused" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                            <path fill-rule="evenodd" d="M2 10a8 8 0 1 1 16 0 8 8 0 0 1-16 0Zm6.39-2.908a.75.75 0 0 1 .766.027l3.5 2.25a.75.75 0 0 1 0 1.262l-3.5 2.25A.75.75 0 0 1 8 12.25v-4.5a.75.75 0 0 1 .39-.658Z" clip-rule="evenodd">
+                        </svg>
+
+                        <!-- Pause Icon -->
+                        <svg x-cloak x-show="!isPaused" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                            <path fill-rule="evenodd" d="M2 10a8 8 0 1 1 16 0 8 8 0 0 1-16 0Zm5-2.25A.75.75 0 0 1 7.75 7h.5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-.75.75h-.5a.75.75 0 0 1-.75-.75v-4.5Zm4 0a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-.75.75h-.5a.75.75 0 0 1-.75-.75v-4.5Z" clip-rule="evenodd">
+                        </svg>
                     </button>
-                </template>
+                </div>
+            @endif
+        @empty
+            <!-- Message when no hero content available -->
+            <div class="relative h-screen w-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700">
+                <!-- Background Pattern -->
+                <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+
+            <!-- Content -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8">
+                <div class="max-w-2xl mx-auto">
+                    <!-- Icon -->
+                    <div class="mb-8">
+                        <svg class="w-20 h-20 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+
+                    <!-- Title -->
+                    <h1 class="font-primary text-4xl md:text-5xl font-bold text-white mb-4">
+                        No Hero Content Available
+                    </h1>
+
+                    <!-- Description -->
+                    <p class="text-xl text-gray-300 mb-8 max-w-lg mx-auto">
+                        The hero section is currently being updated. Please check back later or contact us for more information.
+                    </p>
+
+                    <!-- Action Button -->
+                    <div class="flex justify-center">
+                        <a href="#services"
+                           class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold border-2 border-white text-white rounded-lg hover:bg-white hover:text-gray-900 transition-all duration-300 transform hover:scale-105">
+                            View Our Services
+                        </a>
+                    </div>
+                </div>
             </div>
-            
-            <!-- Pause/Play Button -->
-            <button type="button" 
-                    class="absolute bottom-5 right-5 z-20 rounded-full bg-white/20 backdrop-blur-sm p-3 text-white/70 hover:text-white hover:bg-white/30 transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" 
-                    aria-label="pause carousel" 
-                    x-on:click="(isPaused = !isPaused), setAutoplayInterval(autoplayIntervalTime)" 
-                    x-bind:aria-pressed="isPaused">
-                
-                <!-- Play Icon -->
-                <svg x-cloak x-show="isPaused" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
-                    <path fill-rule="evenodd" d="M2 10a8 8 0 1 1 16 0 8 8 0 0 1-16 0Zm6.39-2.908a.75.75 0 0 1 .766.027l3.5 2.25a.75.75 0 0 1 0 1.262l-3.5 2.25A.75.75 0 0 1 8 12.25v-4.5a.75.75 0 0 1 .39-.658Z" clip-rule="evenodd">
-                </svg>
-                
-                <!-- Pause Icon -->
-                <svg x-cloak x-show="!isPaused" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
-                    <path fill-rule="evenodd" d="M2 10a8 8 0 1 1 16 0 8 8 0 0 1-16 0Zm5-2.25A.75.75 0 0 1 7.75 7h.5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-.75.75h-.5a.75.75 0 0 1-.75-.75v-4.5Zm4 0a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-.75.75h-.5a.75.75 0 0 1-.75-.75v-4.5Z" clip-rule="evenodd">
-                </svg>
-            </button>
-        </div>
+            </div>
+        @endforelse
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="font-primary text-4xl font-bold mb-4" style="color: var(--color-emerald);">Premium Charter Services</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Experience unparalleled luxury and convenience with our comprehensive private aviation solutions.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Private Charter -->
-                <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6" style="background-color: var(--color-emerald);">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-                        </svg>
+    <section id="services">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+            @forelse($services as $service)
+                <div class="group relative h-80 overflow-hidden border cursor-pointer">
+                    <!-- Background Image -->
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                         style="background-image: url('{{ $service->image ? Storage::url($service->image) : 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' }}');">
                     </div>
-                    <h3 class="font-primary text-2xl font-bold mb-4" style="color: var(--color-emerald);">Private Charter</h3>
-                    <p class="text-gray-600 mb-6">
-                        On-demand private jet charter for business or leisure travel with complete flexibility and premium service.
-                    </p>
-                    <ul class="space-y-2 text-sm text-gray-600">
-                        <li class="flex items-center">
-                            <svg class="w-4 h-4 mr-2" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                            24/7 availability
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-4 h-4 mr-2" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                            Global destinations
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-4 h-4 mr-2" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                            Instant booking
-                        </li>
-                    </ul>
-                </div>
 
-                <!-- Corporate Travel -->
-                <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6" style="background-color: var(--color-gold);">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                        </svg>
-                    </div>
-                    <h3 class="font-primary text-2xl font-bold mb-4" style="color: var(--color-emerald);">Corporate Travel</h3>
-                    <p class="text-gray-600 mb-6">
-                        Streamlined corporate aviation solutions designed for business efficiency and executive productivity.
-                    </p>
-                    <ul class="space-y-2 text-sm text-gray-600">
-                        <li class="flex items-center">
-                            <svg class="w-4 h-4 mr-2" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                            Custom schedules
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-4 h-4 mr-2" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                            Meeting facilities
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-4 h-4 mr-2" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                            Privacy & discretion
-                        </li>
-                    </ul>
-                </div>
+                    <!-- Light Overlay for text readability -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent group-hover:from-black/70 transition-all duration-300"></div>
 
-                <!-- Group Charter -->
-                <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6" style="background-color: var(--color-brown);">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
+                    <!-- Content -->
+                    <div class="absolute inset-0 flex flex-col justify-end p-6 text-white">
+                        <div class="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                            <h3 class="font-primary text-xl font-bold mb-2 drop-shadow-lg">{{ $service->title }}</h3>
+
+                            <!-- Arrow Icon -->
+                            <div class="flex items-center space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <svg class="w-5 h-5" style="color: var(--color-gold);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                </svg>
+                                <span class="text-sm font-medium">Learn More</span>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="font-primary text-2xl font-bold mb-4" style="color: var(--color-emerald);">Group Charter</h3>
-                    <p class="text-gray-600 mb-6">
-                        Perfect for large groups, events, and special occasions requiring premium group transportation.
-                    </p>
-                    <ul class="space-y-2 text-sm text-gray-600">
-                        <li class="flex items-center">
-                            <svg class="w-4 h-4 mr-2" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                            Large capacity aircraft
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-4 h-4 mr-2" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                            Event coordination
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-4 h-4 mr-2" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7-293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                            Competitive pricing
-                        </li>
-                    </ul>
                 </div>
-            </div>
+            @empty
+                <!-- Message when no services available -->
+                <div class="col-span-1 md:col-span-2 lg:col-span-4 text-center py-12">
+                    <div class="bg-white rounded-xl shadow-lg p-8">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        <h3 class="font-primary text-2xl font-bold mb-2 text-gray-600">No Services Available</h3>
+                        <p class="text-gray-500">
+                            Our services are currently being updated. Please check back later or contact us for more information.
+                        </p>
+                    </div>
+                </div>
+            @endforelse
         </div>
     </section>
 

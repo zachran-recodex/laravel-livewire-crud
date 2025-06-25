@@ -18,6 +18,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::get('/heroes', \App\Livewire\ManageHeroes::class)->name('heroes');
+    Route::get('/services', \App\Livewire\ManageServices::class)->name('services');
 
     Route::redirect('settings', 'settings/profile');
 
