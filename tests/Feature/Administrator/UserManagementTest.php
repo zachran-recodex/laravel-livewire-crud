@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Administrator;
 
-use App\Livewire\Administrator\UserManagement;
+use App\Livewire\Administrator\ManageUsers;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
@@ -25,7 +25,7 @@ class UserManagementTest extends TestCase
 
     public function test_can_render_user_management_component()
     {
-        Livewire::test(UserManagement::class)
+        Livewire::test(ManageUsers::class)
             ->assertStatus(200);
     }
 
@@ -34,7 +34,7 @@ class UserManagementTest extends TestCase
         $role1 = Role::create(['name' => 'admin']);
         $role2 = Role::create(['name' => 'user']);
 
-        Livewire::test(UserManagement::class)
+        Livewire::test(ManageUsers::class)
             ->set('name', 'Test User')
             ->set('username', 'testuser')
             ->set('email', 'test@example.com')
@@ -74,7 +74,7 @@ class UserManagementTest extends TestCase
         ]);
         $user->assignRole(['admin', 'user']);
 
-        Livewire::test(UserManagement::class)
+        Livewire::test(ManageUsers::class)
             ->call('edit', $user->id)
             ->assertSet('editingUserId', $user->id)
             ->assertSet('name', 'Original Name')
@@ -110,7 +110,7 @@ class UserManagementTest extends TestCase
             'password' => Hash::make('oldpassword')
         ]);
 
-        Livewire::test(UserManagement::class)
+        Livewire::test(ManageUsers::class)
             ->call('edit', $user->id)
             ->set('password', 'newpassword123')
             ->call('save')
@@ -127,7 +127,7 @@ class UserManagementTest extends TestCase
             'password' => $originalPassword
         ]);
 
-        Livewire::test(UserManagement::class)
+        Livewire::test(ManageUsers::class)
             ->call('edit', $user->id)
             ->set('name', 'Updated Name')
             ->set('password', '')
@@ -142,7 +142,7 @@ class UserManagementTest extends TestCase
     {
         $user = User::factory()->create();
 
-        Livewire::test(UserManagement::class)
+        Livewire::test(ManageUsers::class)
             ->call('delete', $user->id)
 ;
 
@@ -153,7 +153,7 @@ class UserManagementTest extends TestCase
 
     public function test_validates_required_fields()
     {
-        Livewire::test(UserManagement::class)
+        Livewire::test(ManageUsers::class)
             ->set('name', '')
             ->set('username', '')
             ->set('email', '')
@@ -174,7 +174,7 @@ class UserManagementTest extends TestCase
             'email' => 'existing@example.com'
         ]);
 
-        Livewire::test(UserManagement::class)
+        Livewire::test(ManageUsers::class)
             ->set('name', 'Test User')
             ->set('username', 'existinguser')
             ->set('email', 'existing@example.com')
@@ -188,7 +188,7 @@ class UserManagementTest extends TestCase
 
     public function test_validates_email_format()
     {
-        Livewire::test(UserManagement::class)
+        Livewire::test(ManageUsers::class)
             ->set('name', 'Test User')
             ->set('username', 'testuser')
             ->set('email', 'invalid-email')
@@ -199,7 +199,7 @@ class UserManagementTest extends TestCase
 
     public function test_validates_password_minimum_length()
     {
-        Livewire::test(UserManagement::class)
+        Livewire::test(ManageUsers::class)
             ->set('name', 'Test User')
             ->set('username', 'testuser')
             ->set('email', 'test@example.com')
@@ -214,7 +214,7 @@ class UserManagementTest extends TestCase
         User::factory()->create(['name' => 'Jane Smith', 'username' => 'janesmith', 'email' => 'jane@example.com']);
         User::factory()->create(['name' => 'Bob Wilson', 'username' => 'bobwilson', 'email' => 'bob@example.com']);
 
-        $component = Livewire::test(UserManagement::class)
+        $component = Livewire::test(ManageUsers::class)
             ->set('search', 'john');
 
         $users = $component->get('users');
@@ -227,7 +227,7 @@ class UserManagementTest extends TestCase
         User::factory()->create(['name' => 'John Doe', 'username' => 'johndoe']);
         User::factory()->create(['name' => 'Jane Smith', 'username' => 'janesmith']);
 
-        $component = Livewire::test(UserManagement::class)
+        $component = Livewire::test(ManageUsers::class)
             ->set('search', 'jane');
 
         $users = $component->get('users');
@@ -241,7 +241,7 @@ class UserManagementTest extends TestCase
         User::factory()->create(['email' => 'admin@company.com']);
         User::factory()->create(['email' => 'user@different.com']);
 
-        $component = Livewire::test(UserManagement::class)
+        $component = Livewire::test(ManageUsers::class)
             ->set('search', 'company');
 
         $users = $component->get('users');
@@ -250,7 +250,7 @@ class UserManagementTest extends TestCase
 
     public function test_can_reset_form()
     {
-        Livewire::test(UserManagement::class)
+        Livewire::test(ManageUsers::class)
             ->set('name', 'Test User')
             ->set('username', 'testuser')
             ->set('email', 'test@example.com')
@@ -268,7 +268,7 @@ class UserManagementTest extends TestCase
 
     public function test_can_open_create_modal()
     {
-        Livewire::test(UserManagement::class)
+        Livewire::test(ManageUsers::class)
             ->call('create')
             ->assertSet('name', '')
             ->assertSet('username', '')
@@ -284,7 +284,7 @@ class UserManagementTest extends TestCase
         // Create more than 10 users
         User::factory()->count(15)->create();
 
-        $component = Livewire::test(UserManagement::class);
+        $component = Livewire::test(ManageUsers::class);
         $users = $component->get('users');
 
         $this->assertEquals(10, $users->perPage());
@@ -293,7 +293,7 @@ class UserManagementTest extends TestCase
 
     public function test_can_create_user_without_roles()
     {
-        Livewire::test(UserManagement::class)
+        Livewire::test(ManageUsers::class)
             ->set('name', 'No Role User')
             ->set('username', 'noroleuser')
             ->set('email', 'norole@example.com')
@@ -319,7 +319,7 @@ class UserManagementTest extends TestCase
         $user = User::factory()->create();
         $user->assignRole($role);
 
-        $component = Livewire::test(UserManagement::class);
+        $component = Livewire::test(ManageUsers::class);
         $users = $component->get('users');
 
         $testUser = $users->where('id', $user->id)->first();

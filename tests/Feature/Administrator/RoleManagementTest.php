@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Administrator;
 
-use App\Livewire\Administrator\RoleManagement;
+use App\Livewire\Administrator\ManageRoles;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
@@ -25,7 +25,7 @@ class RoleManagementTest extends TestCase
 
     public function test_can_render_role_management_component()
     {
-        Livewire::test(RoleManagement::class)
+        Livewire::test(ManageRoles::class)
             ->assertStatus(200);
     }
 
@@ -34,7 +34,7 @@ class RoleManagementTest extends TestCase
         $permission1 = Permission::create(['name' => 'test-permission-1']);
         $permission2 = Permission::create(['name' => 'test-permission-2']);
 
-        Livewire::test(RoleManagement::class)
+        Livewire::test(ManageRoles::class)
             ->set('name', 'test-role')
             ->set('selectedPermissions', ['test-permission-1', 'test-permission-2'])
             ->call('save')
@@ -61,7 +61,7 @@ class RoleManagementTest extends TestCase
         $role = Role::create(['name' => 'original-role']);
         $role->givePermissionTo(['permission-1', 'permission-2']);
 
-        Livewire::test(RoleManagement::class)
+        Livewire::test(ManageRoles::class)
             ->call('edit', $role->id)
             ->assertSet('editingRoleId', $role->id)
             ->assertSet('name', 'original-role')
@@ -88,7 +88,7 @@ class RoleManagementTest extends TestCase
     {
         $role = Role::create(['name' => 'delete-role']);
 
-        Livewire::test(RoleManagement::class)
+        Livewire::test(ManageRoles::class)
             ->call('delete', $role->id)
 ;
 
@@ -99,7 +99,7 @@ class RoleManagementTest extends TestCase
 
     public function test_validates_required_name_field()
     {
-        Livewire::test(RoleManagement::class)
+        Livewire::test(ManageRoles::class)
             ->set('name', '')
             ->call('save')
             ->assertHasErrors(['name' => 'required']);
@@ -109,7 +109,7 @@ class RoleManagementTest extends TestCase
     {
         Role::create(['name' => 'existing-role']);
 
-        Livewire::test(RoleManagement::class)
+        Livewire::test(ManageRoles::class)
             ->set('name', 'existing-role')
             ->call('save')
             ->assertHasErrors(['name' => 'unique']);
@@ -121,7 +121,7 @@ class RoleManagementTest extends TestCase
         Role::create(['name' => 'user-role']);
         Role::create(['name' => 'manager-position']);
 
-        $component = Livewire::test(RoleManagement::class)
+        $component = Livewire::test(ManageRoles::class)
             ->set('search', 'role');
 
         $roles = $component->get('roles');
@@ -130,7 +130,7 @@ class RoleManagementTest extends TestCase
 
     public function test_can_reset_form()
     {
-        Livewire::test(RoleManagement::class)
+        Livewire::test(ManageRoles::class)
             ->set('name', 'test-role')
             ->set('selectedPermissions', ['test-permission'])
             ->set('editingRoleId', 1)
@@ -142,7 +142,7 @@ class RoleManagementTest extends TestCase
 
     public function test_can_open_create_modal()
     {
-        Livewire::test(RoleManagement::class)
+        Livewire::test(ManageRoles::class)
             ->call('create')
             ->assertSet('name', '')
             ->assertSet('selectedPermissions', [])
@@ -157,7 +157,7 @@ class RoleManagementTest extends TestCase
             Role::create(['name' => "role-{$i}"]);
         }
 
-        $component = Livewire::test(RoleManagement::class);
+        $component = Livewire::test(ManageRoles::class);
         $roles = $component->get('roles');
 
         $this->assertEquals(10, $roles->perPage());
@@ -166,7 +166,7 @@ class RoleManagementTest extends TestCase
 
     public function test_can_create_role_without_permissions()
     {
-        Livewire::test(RoleManagement::class)
+        Livewire::test(ManageRoles::class)
             ->set('name', 'no-permission-role')
             ->set('selectedPermissions', [])
             ->call('save')
@@ -187,7 +187,7 @@ class RoleManagementTest extends TestCase
         $role = Role::create(['name' => 'test-role']);
         $role->givePermissionTo($permission);
 
-        $component = Livewire::test(RoleManagement::class);
+        $component = Livewire::test(ManageRoles::class);
         $roles = $component->get('roles');
 
         $firstRole = $roles->first();

@@ -6,7 +6,7 @@
         </div>
 
         <flux:button wire:click="create" variant="primary" icon="plus">
-            Add User
+            Create
         </flux:button>
     </header>
 
@@ -166,7 +166,7 @@
                     </flux:modal.close>
 
                     <flux:button wire:click="delete({{ $user->id }})" variant="danger">
-                        Delete User
+                        Delete
                     </flux:button>
                 </div>
             </div>

@@ -9,7 +9,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Spatie\Permission\Models\Role;
 
-class UserManagement extends Component
+class ManageUsers extends Component
 {
     use WithPagination;
 
@@ -129,6 +129,6 @@ class UserManagement extends Component
 
     public function render()
     {
-        return view('livewire.administrator.user-management');
+        return view('livewire.administrator.manage-users');
     }
 }
