@@ -174,8 +174,8 @@
                         <h3 class="text-sm font-semibold uppercase tracking-wider mb-4" style="color: var(--color-emerald);">Contact</h3>
                         <ul class="space-y-2">
                             <li class="text-gray-600 text-sm">24/7 Charter Hotline</li>
-                            <li><a href="tel:+1234567890" class="hover:text-[var(--color-gold)] text-sm transition-colors" style="color: var(--color-emerald);">+1 (234) 567-8900</a></li>
-                            <li><a href="mailto:charter@flitecharter.com" class="text-gray-600 hover:text-[var(--color-emerald)] text-sm transition-colors">charter@flitecharter.com</a></li>
+                            <li><a href="tel:+6281298214649" class="hover:text-[var(--color-gold)] text-sm transition-colors" style="color: var(--color-emerald);">+62 812 9821 4649</a></li>
+                            <li><a href="mailto:commercial@flitecharter.com" class="text-gray-600 hover:text-[var(--color-emerald)] text-sm transition-colors">commercial@flitecharter.com</a></li>
                         </ul>
                     </div>
                 </div>
