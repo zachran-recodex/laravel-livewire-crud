@@ -214,8 +214,9 @@
                          style="background-image: url('{{ $service->image ? Storage::url($service->image) : 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' }}');">
                     </div>
 
-                    <!-- Light Overlay for text readability -->
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent group-hover:from-black/70 transition-all duration-300"></div>
+                    <!-- Overlay -->
+                    <div class="absolute inset-0 bg-black/40"></div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent"></div>
 
                     <!-- Content -->
                     <div class="absolute inset-0 flex flex-col justify-end p-6 text-white">
@@ -267,6 +268,10 @@
                                 <img src="{{ Storage::url($fleet->image) }}"
                                      alt="{{ $fleet->title }}"
                                      class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                                
+                                <!-- Overlay -->
+                                <div class="absolute inset-0 bg-black/20"></div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                             @else
                                 <div class="w-full h-full flex items-center justify-center bg-gray-200">
                                     <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -621,8 +626,15 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="py-20" style="background-color: var(--color-emerald);">
-        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+    <section class="py-20 relative">
+        <!-- Background Image -->
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');"></div>
+        
+        <!-- Overlay -->
+        <div class="absolute inset-0" style="background-color: var(--color-emerald); opacity: 0.9;"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
+
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
             <h2 class="font-primary text-4xl font-bold text-white mb-6">
                 Ready to Experience Luxury Aviation?
             </h2>
@@ -636,11 +648,11 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                     </svg>
                 </a>
-                <a href="tel:+1234567890" class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold border-2 border-white text-white rounded-lg hover:bg-white hover:text-[var(--color-emerald)] transition-all duration-300">
+                <a href="tel:+6281298214649" class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold border-2 border-white text-white rounded-lg hover:bg-white hover:text-[var(--color-emerald)] transition-all duration-300">
                     <svg class="mr-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                     </svg>
-                    Call Now: +1 (234) 567-8900
+                    Call Now: +62 812 9821 4649
                 </a>
             </div>
         </div>
