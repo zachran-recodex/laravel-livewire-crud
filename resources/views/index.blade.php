@@ -232,6 +232,9 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Link -->
+                    <a href="{{ route('service.detail', $service) }}" class="absolute inset-0"></a>
                 </div>
             @empty
                 <!-- Message when no services available -->
@@ -299,7 +302,7 @@
                             </div>
 
                             @if($fleet->features && count($fleet->features) > 0)
-                                <ul class="space-y-2 text-sm text-gray-600">
+                                <ul class="space-y-2 text-sm text-gray-600 mb-6">
                                     @foreach($fleet->features as $feature)
                                         <li class="flex items-center">
                                             <svg class="w-4 h-4 mr-2" style="color: var(--color-gold);" fill="currentColor" viewBox="0 0 20 20">
@@ -310,6 +313,10 @@
                                     @endforeach
                                 </ul>
                             @endif
+
+                            <a href="{{ route('fleet.detail', $fleet) }}" class="block w-full text-center px-6 py-3 text-white rounded-lg hover:bg-opacity-90 transition-colors" style="background-color: var(--color-emerald);">
+                                View Details
+                            </a>
                         </div>
                     </div>
                 @empty

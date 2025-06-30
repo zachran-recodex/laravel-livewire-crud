@@ -35,9 +35,9 @@
                     <!-- Left Navigation -->
                     <div class="hidden md:flex flex-1 ml-8">
                         <div class="flex items-baseline space-x-8">
-                            <a href="#charter" class="text-white hover:text-[var(--color-gold)] px-3 py-2 text-sm font-medium transition-colors">Charter</a>
-                            <a href="#fleet" class="text-white hover:text-[var(--color-gold)] px-3 py-2 text-sm font-medium transition-colors">Fleet</a>
-                            <a href="#services" class="text-white hover:text-[var(--color-gold)] px-3 py-2 text-sm font-medium transition-colors">Services</a>
+                            <a href="{{ route('charter') }}" class="text-white hover:text-[var(--color-gold)] px-3 py-2 text-sm font-medium transition-colors">Aircraft Charter</a>
+                            <a href="{{ route('fleet') }}" class="text-white hover:text-[var(--color-gold)] px-3 py-2 text-sm font-medium transition-colors">Fleet</a>
+                            <a href="{{ route('service') }}" class="text-white hover:text-[var(--color-gold)] px-3 py-2 text-sm font-medium transition-colors">Services</a>
                         </div>
                     </div>
 
@@ -51,9 +51,8 @@
                     <!-- Right Navigation -->
                     <div class="hidden md:flex flex-1 justify-end">
                         <div class="flex items-baseline space-x-8">
-                            <a href="#about" class="text-white hover:text-[var(--color-gold)] px-3 py-2 text-sm font-medium transition-colors">About</a>
-                            <a href="#contact" class="text-white hover:text-[var(--color-gold)] px-3 py-2 text-sm font-medium transition-colors">Contact</a>
-                            <a href="#quote" class="inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white hover:bg-opacity-90 transition-colors" style="background-color: var(--color-gold);">
+                            <a href="{{ route('about') }}" class="text-white hover:text-[var(--color-gold)] px-3 py-2 text-sm font-medium transition-colors">About</a>
+                            <a href="{{ route('quote') }}" class="inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white hover:bg-opacity-90 transition-colors" style="background-color: var(--color-gold);">
                                 Get Quote
                             </a>
                         </div>
@@ -79,41 +78,35 @@
 
                 <!-- Sidebar Navigation -->
                 <nav class="space-y-4">
-                    <a href="#charter" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-[var(--color-emerald)] rounded-lg transition-colors">
+                    <a href="{{ route('charter') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-[var(--color-emerald)] rounded-lg transition-colors">
                         <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
                         </svg>
                         Charter Services
                     </a>
-                    <a href="#fleet" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-[var(--color-emerald)] rounded-lg transition-colors">
+                    <a href="{{ route('fleet') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-[var(--color-emerald)] rounded-lg transition-colors">
                         <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
                         </svg>
                         Our Fleet
                     </a>
-                    <a href="#services" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-[var(--color-emerald)] rounded-lg transition-colors">
+                    <a href="{{ route('service') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-[var(--color-emerald)] rounded-lg transition-colors">
                         <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2m-8 0H6a2 2 0 00-2 2v6a2 2 0 002 2h12a2 2 0 002-2V8a2 2 0 00-2-2h-2"></path>
                         </svg>
                         Services
                     </a>
-                    <a href="#about" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-[var(--color-emerald)] rounded-lg transition-colors">
+                    <a href="{{ route('about') }}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-[var(--color-emerald)] rounded-lg transition-colors">
                         <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                         About Us
                     </a>
-                    <a href="#contact" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-[var(--color-emerald)] rounded-lg transition-colors">
-                        <svg class="h-5 w-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                        </svg>
-                        Contact
-                    </a>
                 </nav>
 
                 <!-- CTA Button in Sidebar -->
                 <div class="mt-8 pt-8 border-t border-gray-200">
-                    <a href="#quote" class="block w-full text-center px-6 py-3 text-white rounded-lg hover:bg-opacity-90 transition-colors" style="background-color: var(--color-gold);">
+                    <a href="{{ route('quote') }}" class="block w-full text-center px-6 py-3 text-white rounded-lg hover:bg-opacity-90 transition-colors" style="background-color: var(--color-gold);">
                         Get Quote
                     </a>
                 </div>
@@ -122,13 +115,13 @@
                 <div class="mt-8 p-4 bg-gray-50 rounded-lg">
                     <h4 class="font-semibold text-gray-900 mb-2">24/7 Charter Hotline</h4>
                     <p class="text-sm text-gray-600 mb-2">
-                        <a href="tel:+1234567890" class="hover:text-[var(--color-emerald)] transition-colors">
-                            +1 (234) 567-8900
+                        <a href="tel:+6281298214649" class="hover:text-[var(--color-emerald)] transition-colors">
+                            +62 812 9821 4649
                         </a>
                     </p>
                     <p class="text-sm text-gray-600">
-                        <a href="mailto:charter@flitecharter.com" class="hover:text-[var(--color-emerald)] transition-colors">
-                            charter@flitecharter.com
+                        <a href="mailto:commercial@flitecharter.com" class="hover:text-[var(--color-emerald)] transition-colors">
+                            commercial@flitecharter.com
                         </a>
                     </p>
                 </div>
