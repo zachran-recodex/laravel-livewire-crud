@@ -25,8 +25,9 @@ Pastikan Anda memiliki perangkat lunak berikut terinstal di sistem Anda:
 *   PHP >= 8.2
 *   Composer
 *   Node.js >= 18
-*   NPM (direkomendasikan untuk manajemen paket frontend)
+*   Bun (direkomendasikan untuk manajemen paket frontend)
 *   MySQL, PostgreSQL, atau SQLite (untuk database)
+*   **Docker dan Docker Compose (opsional, direkomendasikan untuk lingkungan pengembangan yang konsisten)**
 
 ## Panduan Instalasi
 
@@ -38,28 +39,70 @@ Ikuti langkah-langkah ini untuk menyiapkan proyek di lingkungan lokal Anda:
     cd laravel-livewire-crud
     ```
 
-2.  **Instal Dependensi PHP:**
-    ```bash
-    composer install
-    ```
-
-3.  **Instal Dependensi JavaScript:**
-    ```bash
-    npm install
-    ```
-
-4.  **Konfigurasi Environment:**
+2.  **Konfigurasi Environment:**
     Salin file `.env.example` ke `.env` dan sesuaikan konfigurasi database serta pengaturan lainnya.
     ```bash
     cp .env.example .env
     php artisan key:generate
     ```
 
-5.  **Konfigurasi Database:**
+### Menggunakan Docker (Direkomendasikan)
+
+Untuk lingkungan pengembangan yang konsisten dan terisolasi, Anda dapat menggunakan Docker dan Docker Compose:
+
+1.  **Bangun dan Jalankan Kontainer:**
+    ```bash
+    docker-compose up -d --build
+    ```
+    Ini akan membangun image Docker, membuat kontainer untuk Nginx, PHP-FPM, dan MySQL, lalu menjalankannya di latar belakang.
+
+2.  **Instal Dependensi PHP (di dalam kontainer PHP):**
+    ```bash
+    docker-compose exec php composer install
+    ```
+
+3.  **Instal Dependensi JavaScript (di dalam kontainer PHP):**
+    ```bash
+    docker-compose exec php bun install
+    ```
+    *Atau jika Anda menggunakan npm:*
+    ```bash
+    docker-compose exec php npm install
+    ```
+
+4.  **Jalankan Migrasi dan Seeding (di dalam kontainer PHP):**
+    ```bash
+    docker-compose exec php php artisan migrate:fresh --seed
+    ```
+    *Kredensial Admin Default (setelah seeding):*
+    *   Email: `admin@example.com`
+    *   Password: `password`
+
+5.  **Akses Aplikasi:**
+    Aplikasi akan tersedia di `http://localhost`.
+
+### Instalasi Manual (Tanpa Docker)
+
+Jika Anda tidak ingin menggunakan Docker, ikuti langkah-langkah ini:
+
+1.  **Instal Dependensi PHP:**
+    ```bash
+    composer install
+    ```
+
+2.  **Instal Dependensi JavaScript (menggunakan Bun):**
+    ```bash
+    bun install
+    ```
+    *Atau jika Anda menggunakan npm:*
+    ```bash
+    npm install
+    ```
+
+3.  **Konfigurasi Database:**
     Edit file `.env` untuk mengkonfigurasi koneksi database Anda.
 
-6.  **Jalankan Migrasi dan Seeding:**
-    Ini akan membuat tabel database dan mengisi data awal, termasuk peran dan izin default, serta pengguna admin.
+4.  **Jalankan Migrasi dan Seeding:**
     ```bash
     php artisan migrate:fresh --seed
     ```
