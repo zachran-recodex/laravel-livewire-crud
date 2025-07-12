@@ -26,6 +26,7 @@
 
                 <flux:navlist.group heading="Module" class="grid">
                     <flux:navlist.item icon="cube" :href="route('admin.products')" :current="request()->routeIs('admin.products')" wire:navigate>Manage Products</flux:navlist.item>
+        <flux:navlist.item icon="clipboard-list" :href="route('admin.activity-log')" :current="request()->routeIs('admin.activity-log')" wire:navigate>Activity Log</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 
