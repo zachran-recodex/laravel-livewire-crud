@@ -25,7 +25,7 @@ Pastikan Anda memiliki perangkat lunak berikut terinstal di sistem Anda:
 *   PHP >= 8.2
 *   Composer
 *   Node.js >= 18
-*   Bun (direkomendasikan untuk manajemen paket frontend)
+*   *   NPM (direkomendasikan untuk manajemen paket frontend)
 *   MySQL, PostgreSQL, atau SQLite (untuk database)
 *   **Docker dan Docker Compose (opsional, direkomendasikan untuk lingkungan pengembangan yang konsisten)**
 
@@ -63,7 +63,7 @@ Untuk lingkungan pengembangan yang konsisten dan terisolasi, Anda dapat mengguna
 
 3.  **Instal Dependensi JavaScript (di dalam kontainer PHP):**
     ```bash
-    docker-compose exec php bun install
+    docker-compose exec php npm install
     ```
     *Atau jika Anda menggunakan npm:*
     ```bash
@@ -92,7 +92,7 @@ Jika Anda tidak ingin menggunakan Docker, ikuti langkah-langkah ini:
 
 2.  **Instal Dependensi JavaScript (menggunakan Bun):**
     ```bash
-    bun install
+    npm install
     ```
     *Atau jika Anda menggunakan npm:*
     ```bash

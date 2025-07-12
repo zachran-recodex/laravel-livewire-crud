@@ -63,7 +63,7 @@ jobs:
         run: php artisan key:generate
 
       - name: Build Assets
-        run: bun run build
+        run: npm run build
 
       - name: Run Tests with Coverage
         run: ./vendor/bin/pest --coverage --coverage-clover coverage.xml
