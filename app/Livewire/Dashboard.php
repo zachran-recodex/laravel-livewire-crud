@@ -51,27 +51,6 @@ class Dashboard extends Component
         return User::latest()->paginate(5, pageName: 'recentUsersPage');
     }
 
-    #[Computed]
-    public function userRegistrationTrend()
-    {
-        $last7Days = [];
-        $userCounts = [];
-
-        for ($i = 6; $i >= 0; $i--) {
-            $date = Carbon::now()->subDays($i);
-            $dateFormatted = $date->format('M j');
-
-            $userCount = User::whereDate('created_at', $date->toDateString())->count();
-
-            $last7Days[] = $dateFormatted;
-            $userCounts[] = $userCount;
-        }
-
-        return [
-            'labels' => $last7Days,
-            'data' => $userCounts
-        ];
-    }
 
     #[Computed]
     public function totalActivities()
@@ -100,27 +79,6 @@ class Dashboard extends Component
             ->get();
     }
 
-    #[Computed]
-    public function activityTrend()
-    {
-        $last7Days = [];
-        $activityCounts = [];
-
-        for ($i = 6; $i >= 0; $i--) {
-            $date = Carbon::now()->subDays($i);
-            $dateFormatted = $date->format('M j');
-
-            $activityCount = Activity::whereDate('created_at', $date->toDateString())->count();
-
-            $last7Days[] = $dateFormatted;
-            $activityCounts[] = $activityCount;
-        }
-
-        return [
-            'labels' => $last7Days,
-            'data' => $activityCounts
-        ];
-    }
 
     public function render()
     {

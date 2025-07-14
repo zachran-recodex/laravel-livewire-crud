@@ -63,22 +63,6 @@
         </div>
     </div>
 
-    <!-- Charts Section -->
-    <div class="grid gap-6 lg:grid-cols-2">
-        <div class="bg-white dark:bg-zinc-900 p-6 rounded-lg shadow-sm border border-zinc-200 dark:border-zinc-700">
-            <h3 class="mb-4 text-lg font-semibold text-zinc-900 dark:text-zinc-100">System Overview</h3>
-            <div class="h-64">
-                <canvas id="systemOverviewChart"></canvas>
-            </div>
-        </div>
-
-        <div class="bg-white dark:bg-zinc-900 p-6 rounded-lg shadow-sm border border-zinc-200 dark:border-zinc-700">
-            <h3 class="mb-4 text-lg font-semibold text-zinc-900 dark:text-zinc-100">Activity Trend (7 Days)</h3>
-            <div class="h-64">
-                <canvas id="activityTrendChart" data-activity-trend="{{ json_encode($this->activityTrend) }}"></canvas>
-            </div>
-        </div>
-    </div>
 
     <!-- Info Section -->
     <div class="grid gap-6 lg:grid-cols-3">

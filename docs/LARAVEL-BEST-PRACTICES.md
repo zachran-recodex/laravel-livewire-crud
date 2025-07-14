@@ -39,7 +39,6 @@ public function update(UpdateRequest $request): string
 }
 ```
 
-
 ### **Methods should do just one thing**
 
 A function should do just one thing and do it well.
@@ -81,7 +80,6 @@ public function getFullNameShort(): string
 }
 ```
 
-
 ### **Fat models, skinny controllers**
 
 Put all DB related logic into Eloquent models.
@@ -121,7 +119,6 @@ class Client extends Model
     }
 }
 ```
-
 
 ### **Validation**
 
@@ -163,7 +160,6 @@ class PostRequest extends Request
 }
 ```
 
-
 ### **Business logic should be in service class**
 
 A controller must have only one responsibility, so move business logic from controllers to service classes.
@@ -201,7 +197,6 @@ class ArticleService
     }
 }
 ```
-
 
 ### **Don't repeat yourself (DRY)**
 
@@ -244,7 +239,6 @@ public function getArticles(): Collection
 }
 ```
 
-
 ### **Prefer to use Eloquent over using Query Builder and raw SQL queries. Prefer collections over arrays**
 
 Eloquent allows you to write readable and maintainable code. Also, Eloquent has great built-in tools like soft deletes, events, scopes etc. You may want to check out [Eloquent to SQL reference](https://github.com/alexeymezenin/eloquent-sql-reference)
@@ -272,7 +266,6 @@ Good:
 Article::has('user.profile')->verified()->latest()->get();
 ```
 
-
 ### **Mass assignment**
 
 Bad:
@@ -294,7 +287,6 @@ Good:
 $category->article()->create($request->validated());
 ```
 
-
 ### **Do not execute queries in Blade templates and use eager loading (N + 1 problem)**
 
 Bad (for 100 users, 101 DB queries will be executed):
@@ -314,7 +306,6 @@ $users = User::with('profile')->get();
     {{ $user->profile->name }}
 @endforeach
 ```
-
 
 ### **Chunk data for data-heavy tasks**
 
@@ -338,7 +329,6 @@ $this->chunk(500, function ($users) {
 });
 ```
 
-
 ### **Prefer descriptive method and variable names over comments**
 
 Bad:
@@ -353,7 +343,6 @@ Good:
 ```php
 if ($this->hasJoins())
 ```
-
 
 ### **Do not put JS and CSS in Blade templates and do not put any HTML in PHP classes**
 
@@ -380,7 +369,6 @@ let article = $('#article').val();
 ```
 
 The best way is to use specialized PHP to JS package to transfer the data.
-
 
 ### **Use standard Laravel tools accepted by community**
 
@@ -483,7 +471,6 @@ class Customer extends Model
 }
 ```
 
-
 ### **Use shorter and more readable syntax where possible**
 
 Bad:
@@ -542,7 +529,6 @@ public function __construct(protected User $user) {}
 $this->user->create($request->validated());
 ```
 
-
 ### **Do not get data from the `.env` file directly**
 
 Pass the data to config files instead and then use the `config()` helper function to use the data in an application.
@@ -562,7 +548,6 @@ Good:
 // Use the data
 $apiKey = config('api.key');
 ```
-
 
 ### **Store dates in the standard format. Use accessors and mutators to modify date format**
 
@@ -587,7 +572,6 @@ protected $casts = [
 {{ $object->ordered_at->toDateString() }}
 {{ $object->ordered_at->format('m-d') }}
 ```
-
 
 ### **Do not use DocBlocks**
 
@@ -621,7 +605,6 @@ public function isValidAsciiString(string $string): bool
 {
 }
 ```
-
 
 ### **Other good practices**
 

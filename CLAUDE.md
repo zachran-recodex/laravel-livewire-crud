@@ -90,7 +90,7 @@ resources/views/
 ├── flux/              # Flux UI component overrides
 └── components/        # Blade components
 
-resources/js/          # JavaScript with Chart.js integration
+resources/js/          # JavaScript assets
 resources/css/         # Tailwind CSS with Flux theming
 ```
 
@@ -109,7 +109,7 @@ resources/css/         # Tailwind CSS with Flux theming
 
 ### Component Architecture
 
-- **Dashboard Component**: Analytics with computed properties, Chart.js integration, paginated recent users
+- **Dashboard Component**: Analytics with computed properties, visual data representation, paginated recent users
 - **Administrator Components**: Full CRUD for Users, Roles, Permissions with modal forms
 - **Form Objects**: Livewire v3 form abstraction for maintainability
 - **Computed Properties**: Database queries cached within component lifecycle
@@ -147,18 +147,18 @@ function retryInitialization() {
 }
 ```
 
-### Instance Management (Charts, Libraries, etc)
+### Instance Management (Libraries, etc)
 
 - Always destroy existing instances before creating new ones
 - Store instances in window object for global access
 - Check if instances already exist before retry:
 
 ```javascript
-window.instances = { chart1: null, chart2: null };
+window.instances = { component1: null, component2: null };
 
 // Destroy existing
-if (window.instances.chart1) {
-    window.instances.chart1.destroy();
+if (window.instances.component1) {
+    window.instances.component1.destroy();
 }
 ```
 
@@ -185,7 +185,7 @@ if (!el1 || !el2) return false;
 
 ### File Organization
 
-- Separate logic into separate files (chart.js, modal.js, etc)
+- Separate logic into separate files (modal.js, utility.js, etc)
 - Import through main app.js
 - Modular approach for maintainability
 
@@ -246,7 +246,7 @@ document.addEventListener('livewire:navigated', retryInit);
 
 - **Vite HMR**: Fast development with hot module replacement
 - **Tailwind Purging**: Automatic unused CSS removal
-- **Chart.js**: Proper instance management with destroy/recreate pattern
+- **JavaScript Components**: Proper instance management with destroy/recreate pattern
 - **Asset Compilation**: Use `npm run build` for production
 
 ## Testing Strategy
