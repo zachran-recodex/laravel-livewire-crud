@@ -23,26 +23,50 @@
             <table class="min-w-full divide-y divide-zinc-200 dark:divide-zinc-700">
                 <thead class="bg-zinc-50 dark:bg-zinc-800">
                 <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider" wire:click="sortBy('name')">
-                        Name
-                        @if ($sortField === 'name')
-                            <span>{{ $sortDirection === 'asc' ? '▲' : '▼' }}</span>
-                        @endif
+                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider cursor-pointer hover:text-zinc-700 dark:hover:text-zinc-200" wire:click="sortBy('name')">
+                        <div class="flex items-center space-x-1">
+                            <span>Name</span>
+                            @if ($sortField === 'name')
+                                @if ($sortDirection === 'asc')
+                                    <flux:icon.chevron-up class="h-4 w-4" />
+                                @else
+                                    <flux:icon.chevron-down class="h-4 w-4" />
+                                @endif
+                            @else
+                                <flux:icon.chevron-up-down class="h-4 w-4 opacity-50" />
+                            @endif
+                        </div>
                     </th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
                         Description
                     </th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider" wire:click="sortBy('price')">
-                        Price
-                        @if ($sortField === 'price')
-                            <span>{{ $sortDirection === 'asc' ? '▲' : '▼' }}</span>
-                        @endif
+                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider cursor-pointer hover:text-zinc-700 dark:hover:text-zinc-200" wire:click="sortBy('price')">
+                        <div class="flex items-center space-x-1">
+                            <span>Price</span>
+                            @if ($sortField === 'price')
+                                @if ($sortDirection === 'asc')
+                                    <flux:icon.chevron-up class="h-4 w-4" />
+                                @else
+                                    <flux:icon.chevron-down class="h-4 w-4" />
+                                @endif
+                            @else
+                                <flux:icon.chevron-up-down class="h-4 w-4 opacity-50" />
+                            @endif
+                        </div>
                     </th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider" wire:click="sortBy('stock')">
-                        Stock
-                        @if ($sortField === 'stock')
-                            <span>{{ $sortDirection === 'asc' ? '▲' : '▼' }}</span>
-                        @endif
+                    <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider cursor-pointer hover:text-zinc-700 dark:hover:text-zinc-200" wire:click="sortBy('stock')">
+                        <div class="flex items-center space-x-1">
+                            <span>Stock</span>
+                            @if ($sortField === 'stock')
+                                @if ($sortDirection === 'asc')
+                                    <flux:icon.chevron-up class="h-4 w-4" />
+                                @else
+                                    <flux:icon.chevron-down class="h-4 w-4" />
+                                @endif
+                            @else
+                                <flux:icon.chevron-up-down class="h-4 w-4 opacity-50" />
+                            @endif
+                        </div>
                     </th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Actions</th>
                 </tr>
