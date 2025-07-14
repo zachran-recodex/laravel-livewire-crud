@@ -90,11 +90,7 @@ Jika Anda tidak ingin menggunakan Docker, ikuti langkah-langkah ini:
     composer install
     ```
 
-2.  **Instal Dependensi JavaScript (menggunakan Bun):**
-    ```bash
-    npm install
-    ```
-    *Atau jika Anda menggunakan npm:*
+2.  **Instal Dependensi JavaScript:**
     ```bash
     npm install
     ```
