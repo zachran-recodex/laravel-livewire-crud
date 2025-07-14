@@ -2,44 +2,77 @@
 
 namespace App\Livewire\Administrator;
 
-use Livewire\Attributes\Layout;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Spatie\Activitylog\Models\Activity;
 
-#[Layout('components.layouts.app')]
 class ActivityLog extends Component
 {
     use WithPagination;
 
-    public string $search = '';
-    public string $sortField = 'created_at';
-    public bool $sortAsc = false;
+    public $search = '';
+    public $filterCauser = '';
+    public $filterLogName = '';
+    public $filterEvent = '';
+    public $filterDateFrom = '';
+    public $filterDateTo = '';
 
-    public function sortBy(string $field): void
+    #[Computed]
+    public function activities()
     {
-        if ($this->sortField === $field) {
-            $this->sortAsc = !$this->sortAsc;
-        } else {
-            $this->sortField = $field;
-            $this->sortAsc = true;
+        return Activity::with(['causer', 'subject'])
+            ->when($this->search, function ($query) {
+                $query->where('description', 'like', '%' . $this->search . '%');
+            })
+            ->when($this->filterCauser, function ($query) {
+                $query->whereHasMorph('causer', ['App\Models\User'], function ($query) {
+                    $query->where('name', 'like', '%' . $this->filterCauser . '%');
+                });
+            })
+            ->when($this->filterLogName, function ($query) {
+                $query->where('log_name', $this->filterLogName);
+            })
+            ->when($this->filterEvent, function ($query) {
+                $query->where('event', $this->filterEvent);
+            })
+            ->when($this->filterDateFrom, function ($query) {
+                $query->whereDate('created_at', '>=', $this->filterDateFrom);
+            })
+            ->when($this->filterDateTo, function ($query) {
+                $query->whereDate('created_at', '<=', $this->filterDateTo);
+            })
+            ->latest()
+            ->paginate(15);
+    }
+
+    #[Computed]
+    public function logNames()
+    {
+        return Activity::distinct()->pluck('log_name')->filter();
+    }
+
+    #[Computed]
+    public function events()
+    {
+        return Activity::distinct()->pluck('event')->filter();
+    }
+
+    public function clearFilters()
+    {
+        $this->reset(['search', 'filterCauser', 'filterLogName', 'filterEvent', 'filterDateFrom', 'filterDateTo']);
+        $this->resetPage();
+    }
+
+    public function updated($propertyName)
+    {
+        if (in_array($propertyName, ['search', 'filterCauser', 'filterLogName', 'filterEvent', 'filterDateFrom', 'filterDateTo'])) {
+            $this->resetPage();
         }
     }
 
     public function render()
     {
-        $activities = Activity::query()
-            ->when($this->search, function ($query) {
-                $query->where('description', 'like', '%' . $this->search . '%')
-                    ->orWhere('subject_type', 'like', '%' . $this->search . '%')
-                    ->orWhere('causer_type', 'like', '%' . $this->search . '%')
-                    ->orWhere('log_name', 'like', '%' . $this->search . '%');
-            })
-            ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
-            ->paginate(10);
-
-        return view('livewire.administrator.activity-log', [
-            'activities' => $activities,
-        ]);
+        return view('livewire.administrator.activity-log');
     }
 }

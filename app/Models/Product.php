@@ -4,22 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Product extends Model
 {
     use HasFactory, LogsActivity;
-
-    protected static $recordEvents = ['created', 'updated', 'deleted'];
-
-    public function getActivitylogOptions(): ActivitylogOptions
-    {
-        return ActivitylogOptions::defaults()
-            ->logFillable()
-            ->logOnlyDirty()
-            ->dontSubmitEmptyLogs();
-    }
 
     /**
      * The attributes that are mass assignable.
@@ -32,4 +22,16 @@ class Product extends Model
         'price',
         'stock',
     ];
+
+    /**
+     * Get the options for activity logging.
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logFillable()
+            ->logOnlyDirty()
+            ->dontSubmitEmptyLogs()
+            ->useLogName('products');
+    }
 }

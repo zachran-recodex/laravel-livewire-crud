@@ -3,16 +3,16 @@ import Chart from 'chart.js/auto';
 // Global chart instances
 window.dashboardCharts = {
     systemOverview: null,
-    userTrend: null
+    activityTrend: null
 };
 
 // Initialize charts function
 function initializeDashboardCharts() {
     // Check if we're on the dashboard page
     const systemChartEl = document.getElementById('systemOverviewChart');
-    const trendChartEl = document.getElementById('userTrendChart');
+    const activityTrendEl = document.getElementById('activityTrendChart');
     
-    if (!systemChartEl || !trendChartEl) {
+    if (!systemChartEl || !activityTrendEl) {
         return false;
     }
     
@@ -21,29 +21,31 @@ function initializeDashboardCharts() {
         if (window.dashboardCharts.systemOverview) {
             window.dashboardCharts.systemOverview.destroy();
         }
-        if (window.dashboardCharts.userTrend) {
-            window.dashboardCharts.userTrend.destroy();
+        if (window.dashboardCharts.activityTrend) {
+            window.dashboardCharts.activityTrend.destroy();
         }
         
         // Get data for system overview chart
         const usersEl = document.querySelector('[data-users-count]');
         const rolesEl = document.querySelector('[data-roles-count]');
         const permissionsEl = document.querySelector('[data-permissions-count]');
+        const activitiesEl = document.querySelector('[data-activities-count]');
         
         const usersCount = parseInt(usersEl?.dataset.usersCount || usersEl?.textContent || 0);
         const rolesCount = parseInt(rolesEl?.dataset.rolesCount || rolesEl?.textContent || 0);
         const permissionsCount = parseInt(permissionsEl?.dataset.permissionsCount || permissionsEl?.textContent || 0);
+        const activitiesCount = parseInt(activitiesEl?.dataset.activitiesCount || activitiesEl?.textContent || 0);
         
         // Create System Overview Chart
         const ctx1 = systemChartEl.getContext('2d');
         window.dashboardCharts.systemOverview = new Chart(ctx1, {
             type: 'doughnut',
             data: {
-                labels: ['Users', 'Roles', 'Permissions'],
+                labels: ['Users', 'Roles', 'Permissions', 'Activities'],
                 datasets: [{
-                    data: [usersCount, rolesCount, permissionsCount],
-                    backgroundColor: ['#2563EB', '#16A34A', '#9333EA'],
-                    borderColor: ['#1D4ED8', '#15803D', '#7C3AED'],
+                    data: [usersCount, rolesCount, permissionsCount, activitiesCount],
+                    backgroundColor: ['#2563EB', '#16A34A', '#9333EA', '#EA580C'],
+                    borderColor: ['#1D4ED8', '#15803D', '#7C3AED', '#C2410C'],
                     borderWidth: 2
                 }]
             },
@@ -63,24 +65,24 @@ function initializeDashboardCharts() {
             }
         });
         
-        // Get trend data
-        const trendDataRaw = trendChartEl.dataset.trendData;
-        const trendData = JSON.parse(trendDataRaw || '{"labels":[],"data":[]}');
+        // Get activity trend data
+        const activityDataRaw = activityTrendEl.dataset.activityTrend;
+        const activityData = JSON.parse(activityDataRaw || '{"labels":[],"data":[]}');
         
-        // Create User Trend Chart
-        const ctx2 = trendChartEl.getContext('2d');
-        window.dashboardCharts.userTrend = new Chart(ctx2, {
+        // Create Activity Trend Chart
+        const ctx2 = activityTrendEl.getContext('2d');
+        window.dashboardCharts.activityTrend = new Chart(ctx2, {
             type: 'line',
             data: {
-                labels: trendData.labels || [],
+                labels: activityData.labels || [],
                 datasets: [{
-                    label: 'New Users',
-                    data: trendData.data || [],
-                    borderColor: '#2563EB',
-                    backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                    label: 'Daily Activities',
+                    data: activityData.data || [],
+                    borderColor: '#EA580C',
+                    backgroundColor: 'rgba(234, 88, 12, 0.1)',
                     tension: 0.4,
                     fill: true,
-                    pointBackgroundColor: '#2563EB',
+                    pointBackgroundColor: '#EA580C',
                     pointBorderColor: '#FFFFFF',
                     pointBorderWidth: 2,
                     pointRadius: 4
@@ -142,7 +144,7 @@ function tryInitializeWithRetry() {
     
     delays.forEach(delay => {
         setTimeout(() => {
-            if (!window.dashboardCharts.systemOverview && !window.dashboardCharts.userTrend) {
+            if (!window.dashboardCharts.systemOverview && !window.dashboardCharts.activityTrend) {
                 initializeDashboardCharts();
             }
         }, delay);

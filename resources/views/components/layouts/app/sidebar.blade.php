@@ -21,12 +21,12 @@
                     <flux:navlist.item icon="users" :href="route('admin.users')" :current="request()->routeIs('admin.users')" wire:navigate>Manage Users</flux:navlist.item>
                     <flux:navlist.item icon="shield-check" :href="route('admin.roles')" :current="request()->routeIs('admin.roles')" wire:navigate>Manage Roles</flux:navlist.item>
                     <flux:navlist.item icon="key" :href="route('admin.permissions')" :current="request()->routeIs('admin.permissions')" wire:navigate>Manage Permissions</flux:navlist.item>
+                    <flux:navlist.item icon="clipboard-document-list" :href="route('admin.activity-log')" :current="request()->routeIs('admin.activity-log')" wire:navigate>Activity Log</flux:navlist.item>
                 </flux:navlist.group>
                 @endrole
 
                 <flux:navlist.group heading="Module" class="grid">
                     <flux:navlist.item icon="cube" :href="route('admin.products')" :current="request()->routeIs('admin.products')" wire:navigate>Manage Products</flux:navlist.item>
-        <flux:navlist.item icon="clipboard-list" :href="route('admin.activity-log')" :current="request()->routeIs('admin.activity-log')" wire:navigate>Activity Log</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 

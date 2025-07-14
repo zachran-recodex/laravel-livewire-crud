@@ -17,8 +17,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/users', \App\Livewire\Administrator\ManageUsers::class)->name('users');
         Route::get('/roles', \App\Livewire\Administrator\ManageRoles::class)->name('roles');
         Route::get('/permissions', \App\Livewire\Administrator\ManagePermissions::class)->name('permissions');
-        Route::get('/products', \App\Livewire\ManageProducts::class)->name('products');
         Route::get('/activity-log', \App\Livewire\Administrator\ActivityLog::class)->name('activity-log');
+        Route::get('/products', \App\Livewire\ManageProducts::class)->name('products');
     });
 
     Route::redirect('settings', 'settings/profile');
