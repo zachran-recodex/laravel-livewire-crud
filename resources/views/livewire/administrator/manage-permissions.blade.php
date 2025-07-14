@@ -43,9 +43,13 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                             <div class="flex space-x-2">
-                                <flux:button wire:click="edit({{ $permission->id }})" size="sm" variant="primary" color="blue" icon="pencil" />
+                                <flux:button wire:click="edit({{ $permission->id }})" size="sm" variant="primary" color="blue" icon="pencil">
+                                    Edit
+                                </flux:button>
                                 <flux:modal.trigger name="delete-permission-{{ $permission->id }}">
-                                    <flux:button size="sm" variant="primary" color="red" icon="trash" />
+                                    <flux:button size="sm" variant="primary" color="red" icon="trash">
+                                    Delete
+                                </flux:button>
                                 </flux:modal.trigger>
                             </div>
                         </td>
