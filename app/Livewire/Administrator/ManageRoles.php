@@ -12,7 +12,9 @@ class ManageRoles extends Component
     use WithPagination;
 
     public $name = '';
+
     public $editingRoleId = null;
+
     public $showModal = false;
 
     public function rules(): array
@@ -22,7 +24,7 @@ class ManageRoles extends Component
         ];
 
         if ($this->editingRoleId) {
-            $rules['name'] .= '|unique:roles,name,' . $this->editingRoleId;
+            $rules['name'] .= '|unique:roles,name,'.$this->editingRoleId;
         } else {
             $rules['name'] .= '|unique:roles,name';
         }
@@ -60,7 +62,6 @@ class ManageRoles extends Component
         } else {
             $role = Role::create(['name' => $this->name]);
         }
-
 
         $message = $this->editingRoleId ? 'Role successfully updated!' : 'Role successfully created!';
 
