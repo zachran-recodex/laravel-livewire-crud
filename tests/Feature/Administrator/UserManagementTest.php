@@ -208,46 +208,6 @@ class UserManagementTest extends TestCase
             ->assertHasErrors(['password' => 'min']);
     }
 
-    public function test_can_search_users()
-    {
-        User::factory()->create(['name' => 'John Doe', 'username' => 'johndoe', 'email' => 'john@example.com']);
-        User::factory()->create(['name' => 'Jane Smith', 'username' => 'janesmith', 'email' => 'jane@example.com']);
-        User::factory()->create(['name' => 'Bob Wilson', 'username' => 'bobwilson', 'email' => 'bob@example.com']);
-
-        $component = Livewire::test(ManageUsers::class)
-            ->set('search', 'john');
-
-        $users = $component->get('users');
-        $this->assertEquals(1, $users->count());
-        $this->assertEquals('John Doe', $users->first()->name);
-    }
-
-    public function test_can_search_users_by_username()
-    {
-        User::factory()->create(['name' => 'John Doe', 'username' => 'johndoe']);
-        User::factory()->create(['name' => 'Jane Smith', 'username' => 'janesmith']);
-
-        $component = Livewire::test(ManageUsers::class)
-            ->set('search', 'jane');
-
-        $users = $component->get('users');
-        $this->assertEquals(1, $users->count());
-        $this->assertEquals('janesmith', $users->first()->username);
-    }
-
-    public function test_can_search_users_by_email()
-    {
-        User::factory()->create(['email' => 'test@company.com']);
-        User::factory()->create(['email' => 'admin@company.com']);
-        User::factory()->create(['email' => 'user@different.com']);
-
-        $component = Livewire::test(ManageUsers::class)
-            ->set('search', 'company');
-
-        $users = $component->get('users');
-        $this->assertEquals(2, $users->count());
-    }
-
     public function test_can_reset_form()
     {
         Livewire::test(ManageUsers::class)

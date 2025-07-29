@@ -7,15 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\CausesActivity;
-use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasRoles, LogsActivity, CausesActivity;
+    use HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -64,15 +61,4 @@ class User extends Authenticatable
             ->implode('');
     }
 
-    /**
-     * Get the options for activity logging.
-     */
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()
-            ->logOnly(['name', 'username', 'email'])
-            ->logOnlyDirty()
-            ->dontSubmitEmptyLogs()
-            ->useLogName('users');
-    }
 }

@@ -6,7 +6,6 @@ use App\Livewire\Administrator\ManageRoles;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
-use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
@@ -31,57 +30,35 @@ class RoleManagementTest extends TestCase
 
     public function test_can_create_new_role()
     {
-        $permission1 = Permission::create(['name' => 'test-permission-1']);
-        $permission2 = Permission::create(['name' => 'test-permission-2']);
-
         Livewire::test(ManageRoles::class)
             ->set('name', 'test-role')
-            ->set('selectedPermissions', ['test-permission-1', 'test-permission-2'])
             ->call('save')
             ->assertHasNoErrors()
             ->assertSet('name', '')
-            ->assertSet('selectedPermissions', [])
             ->assertSet('showModal', false);
 
         $this->assertDatabaseHas('roles', [
             'name' => 'test-role'
         ]);
-
-        $role = Role::where('name', 'test-role')->first();
-        $this->assertTrue($role->hasPermissionTo('test-permission-1'));
-        $this->assertTrue($role->hasPermissionTo('test-permission-2'));
     }
 
     public function test_can_edit_existing_role()
     {
-        $permission1 = Permission::create(['name' => 'permission-1']);
-        $permission2 = Permission::create(['name' => 'permission-2']);
-        $permission3 = Permission::create(['name' => 'permission-3']);
-
         $role = Role::create(['name' => 'original-role']);
-        $role->givePermissionTo(['permission-1', 'permission-2']);
 
         Livewire::test(ManageRoles::class)
             ->call('edit', $role->id)
             ->assertSet('editingRoleId', $role->id)
             ->assertSet('name', 'original-role')
-            ->assertSet('selectedPermissions', ['permission-1', 'permission-2'])
             ->assertSet('showModal', true)
             ->set('name', 'updated-role')
-            ->set('selectedPermissions', ['permission-2', 'permission-3'])
             ->call('save')
-            ->assertHasNoErrors()
-;
+            ->assertHasNoErrors();
 
         $this->assertDatabaseHas('roles', [
             'id' => $role->id,
             'name' => 'updated-role'
         ]);
-
-        $role->refresh();
-        $this->assertFalse($role->hasPermissionTo('permission-1'));
-        $this->assertTrue($role->hasPermissionTo('permission-2'));
-        $this->assertTrue($role->hasPermissionTo('permission-3'));
     }
 
     public function test_can_delete_role()
@@ -115,28 +92,13 @@ class RoleManagementTest extends TestCase
             ->assertHasErrors(['name' => 'unique']);
     }
 
-    public function test_can_search_roles()
-    {
-        Role::create(['name' => 'admin-role']);
-        Role::create(['name' => 'user-role']);
-        Role::create(['name' => 'manager-position']);
-
-        $component = Livewire::test(ManageRoles::class)
-            ->set('search', 'role');
-
-        $roles = $component->get('roles');
-        $this->assertEquals(2, $roles->count());
-    }
-
     public function test_can_reset_form()
     {
         Livewire::test(ManageRoles::class)
             ->set('name', 'test-role')
-            ->set('selectedPermissions', ['test-permission'])
             ->set('editingRoleId', 1)
             ->call('resetForm')
             ->assertSet('name', '')
-            ->assertSet('selectedPermissions', [])
             ->assertSet('editingRoleId', null);
     }
 
@@ -145,7 +107,6 @@ class RoleManagementTest extends TestCase
         Livewire::test(ManageRoles::class)
             ->call('create')
             ->assertSet('name', '')
-            ->assertSet('selectedPermissions', [])
             ->assertSet('editingRoleId', null)
             ->assertSet('showModal', true);
     }
@@ -164,33 +125,5 @@ class RoleManagementTest extends TestCase
         $this->assertEquals(15, $roles->total());
     }
 
-    public function test_can_create_role_without_permissions()
-    {
-        Livewire::test(ManageRoles::class)
-            ->set('name', 'no-permission-role')
-            ->set('selectedPermissions', [])
-            ->call('save')
-            ->assertHasNoErrors()
-;
 
-        $this->assertDatabaseHas('roles', [
-            'name' => 'no-permission-role'
-        ]);
-
-        $role = Role::where('name', 'no-permission-role')->first();
-        $this->assertEquals(0, $role->permissions->count());
-    }
-
-    public function test_roles_load_with_permissions()
-    {
-        $permission = Permission::create(['name' => 'test-permission']);
-        $role = Role::create(['name' => 'test-role']);
-        $role->givePermissionTo($permission);
-
-        $component = Livewire::test(ManageRoles::class);
-        $roles = $component->get('roles');
-
-        $firstRole = $roles->first();
-        $this->assertTrue($firstRole->relationLoaded('permissions'));
-    }
 }

@@ -13,32 +13,26 @@
 
             <flux:navlist variant="outline">
                 <flux:navlist.group heading="Platform" class="grid">
-                    <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                    <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>Dashboard</flux:navlist.item>
                 </flux:navlist.group>
 
                 @role('Super Admin')
                 <flux:navlist.group heading="Administrator" class="grid">
                     <flux:navlist.item icon="users" :href="route('admin.users')" :current="request()->routeIs('admin.users')" wire:navigate>Manage Users</flux:navlist.item>
                     <flux:navlist.item icon="shield-check" :href="route('admin.roles')" :current="request()->routeIs('admin.roles')" wire:navigate>Manage Roles</flux:navlist.item>
-                    <flux:navlist.item icon="key" :href="route('admin.permissions')" :current="request()->routeIs('admin.permissions')" wire:navigate>Manage Permissions</flux:navlist.item>
-                    <flux:navlist.item icon="clipboard-document-list" :href="route('admin.activity-log')" :current="request()->routeIs('admin.activity-log')" wire:navigate>Activity Log</flux:navlist.item>
                 </flux:navlist.group>
                 @endrole
-
-                <flux:navlist.group heading="Module" class="grid">
-                    <flux:navlist.item icon="cube" :href="route('admin.products')" :current="request()->routeIs('admin.products')" wire:navigate>Manage Products</flux:navlist.item>
-                </flux:navlist.group>
             </flux:navlist>
 
             <flux:spacer />
 
             <flux:navlist variant="outline">
                 <flux:navlist.item icon="folder-git-2" href="https://github.com/zachran-recodex/laravel-livewire-crud.git" target="_blank">
-                {{ __('Repository') }}
+                    Repository
                 </flux:navlist.item>
 
                 <flux:navlist.item icon="book-open-text" href="https://github.com/zachran-recodex/laravel-livewire-crud.git" target="_blank">
-                {{ __('Documentation') }}
+                    Documentation
                 </flux:navlist.item>
             </flux:navlist>
 
@@ -73,7 +67,7 @@
                     <flux:menu.separator />
 
                     <flux:menu.radio.group>
-                        <flux:menu.item :href="route('settings.profile')" icon="cog" wire:navigate>{{ __('Settings') }}</flux:menu.item>
+                        <flux:menu.item :href="route('settings.profile')" icon="cog" wire:navigate>Settings</flux:menu.item>
                     </flux:menu.radio.group>
 
                     <flux:menu.separator />
@@ -81,7 +75,7 @@
                     <form method="POST" action="{{ route('logout') }}" class="w-full">
                         @csrf
                         <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle" class="w-full">
-                            {{ __('Log Out') }}
+                            Log Out
                         </flux:menu.item>
                     </form>
                 </flux:menu>
@@ -123,7 +117,7 @@
                     <flux:menu.separator />
 
                     <flux:menu.radio.group>
-                        <flux:menu.item :href="route('settings.profile')" icon="cog" wire:navigate>{{ __('Settings') }}</flux:menu.item>
+                        <flux:menu.item :href="route('settings.profile')" icon="cog" wire:navigate>Settings</flux:menu.item>
                     </flux:menu.radio.group>
 
                     <flux:menu.separator />
@@ -131,7 +125,7 @@
                     <form method="POST" action="{{ route('logout') }}" class="w-full">
                         @csrf
                         <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle" class="w-full">
-                            {{ __('Log Out') }}
+                            Log Out
                         </flux:menu.item>
                     </form>
                 </flux:menu>
