@@ -2,133 +2,187 @@
 
 namespace App\Livewire\Administrator;
 
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use App\Livewire\Forms\UserForm;
+use App\Services\UserService;
+use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Spatie\Permission\Models\Role;
 
 class ManageUsers extends Component
 {
     use WithPagination;
 
-    public $name = '';
-    public $username = '';
-    public $email = '';
-    public $password = '';
-    public $selectedRoles = [];
-    public $editingUserId = null;
-    public $showModal = false;
-    public $search = '';
+    public UserForm $form;
 
-    public function rules(): array
+    public string $search = '';
+
+    public bool $showModal = false;
+
+    public bool $showDeleteModal = false;
+
+    public ?int $userToDelete = null;
+
+    public string $modalTitle = '';
+
+    protected $queryString = [
+        'search' => ['except' => ''],
+    ];
+
+    public function boot(UserService $userService): void
     {
-        $rules = [
-            'name' => 'required|string|max:255',
-            'username' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'selectedRoles' => 'array',
-        ];
+        $this->userService = $userService;
+    }
 
-        if ($this->editingUserId) {
-            $rules['username'] .= '|unique:users,username,' . $this->editingUserId;
-            $rules['email'] .= '|unique:users,email,' . $this->editingUserId;
-            $rules['password'] = 'nullable|string|min:8';
-        } else {
-            $rules['username'] .= '|unique:users,username';
-            $rules['email'] .= '|unique:users,email';
-            $rules['password'] = 'required|string|min:8';
-        }
+    protected UserService $userService;
 
-        return $rules;
+    public function mount(): void
+    {
+        $this->resetForm();
     }
 
     #[Computed]
     public function users()
     {
-        return User::with('roles')
-            ->when($this->search, function ($query) {
-                $query->where('name', 'like', '%' . $this->search . '%')
-                      ->orWhere('username', 'like', '%' . $this->search . '%')
-                      ->orWhere('email', 'like', '%' . $this->search . '%');
-            })
-            ->latest()
-            ->paginate(10);
+        if ($this->search) {
+            return $this->userService->searchUsers($this->search, 10);
+        }
+
+        return $this->userService->getUsersWithRoles(10);
     }
 
     #[Computed]
     public function roles()
     {
-        return Role::all();
+        return $this->userService->getAllRoles();
     }
 
-    public function create()
+    public function updatedSearch(): void
     {
-        $this->reset(['name', 'username', 'email', 'password', 'selectedRoles', 'editingUserId']);
+        $this->resetPage();
+    }
+
+    public function create(): void
+    {
+        $this->resetForm();
+        $this->modalTitle = 'Tambah User Baru';
         $this->showModal = true;
     }
 
-    public function edit($userId)
+    public function edit(int $userId): void
     {
-        $user = User::with('roles')->findOrFail($userId);
-        $this->editingUserId = $user->id;
-        $this->name = $user->name;
-        $this->username = $user->username;
-        $this->email = $user->email;
-        $this->password = '';
-        $this->selectedRoles = $user->roles->pluck('name')->toArray();
-        $this->showModal = true;
+        try {
+            $user = $this->userService->findUserById($userId);
+            $this->form->setUser($user);
+            $this->modalTitle = 'Edit User';
+            $this->showModal = true;
+        } catch (\Exception $e) {
+            session()->flash('error', 'User tidak ditemukan.');
+        }
     }
 
-    public function save()
+    public function save(): void
     {
-        $this->validate();
+        try {
+            if ($this->isEditMode()) {
+                $this->updateUser();
+            } else {
+                $this->createUser();
+            }
 
-        $userData = [
-            'name' => $this->name,
-            'username' => $this->username,
-            'email' => $this->email,
-        ];
+            $this->closeModal();
+            $this->dispatch('user-saved');
+        } catch (\Exception $e) {
+            session()->flash('error', 'Terjadi kesalahan: '.$e->getMessage());
+        }
+    }
 
-        if ($this->password) {
-            $userData['password'] = Hash::make($this->password);
+    public function confirmDelete(int $userId): void
+    {
+        $this->userToDelete = $userId;
+        $this->showDeleteModal = true;
+    }
+
+    public function delete(): void
+    {
+        if (! $this->userToDelete) {
+            return;
         }
 
-        if ($this->editingUserId) {
-            $user = User::findOrFail($this->editingUserId);
-            $user->update($userData);
-        } else {
-            $user = User::create($userData);
+        try {
+            $user = $this->userService->findUserById($this->userToDelete);
+            $this->userService->deleteUser($user);
+
+            session()->flash('message', 'User berhasil dihapus!');
+            $this->closeDeleteModal();
+            $this->dispatch('user-deleted');
+        } catch (\Exception $e) {
+            session()->flash('error', 'Gagal menghapus user: '.$e->getMessage());
         }
+    }
 
-        $user->syncRoles($this->selectedRoles);
-
-        $message = $this->editingUserId ? 'User successfully updated!' : 'User successfully created!';
-
-        $this->reset(['name', 'username', 'email', 'password', 'selectedRoles', 'editingUserId']);
+    public function closeModal(): void
+    {
         $this->showModal = false;
-
-        session()->flash('message', $message);
+        $this->resetForm();
+        $this->resetErrorBag();
     }
 
-    public function delete($userId)
+    public function closeDeleteModal(): void
     {
-        User::findOrFail($userId)->delete();
-        session()->flash('message', 'User successfully deleted!');
-
-        // Close the confirmation modal after delete
-        $this->modal("delete-user-{$userId}")->close();
+        $this->showDeleteModal = false;
+        $this->userToDelete = null;
     }
 
-    public function resetForm()
+    #[On('user-saved')]
+    public function handleUserSaved(): void
     {
-        $this->reset(['name', 'username', 'email', 'password', 'selectedRoles', 'editingUserId']);
-        $this->resetValidation();
+        // Optional: refresh users list or show notification
+        $this->resetPage();
     }
 
-    public function render()
+    #[On('user-deleted')]
+    public function handleUserDeleted(): void
+    {
+        // Optional: refresh users list or show notification
+        $this->resetPage();
+    }
+
+    public function render(): View
     {
         return view('livewire.administrator.manage-users');
+    }
+
+    private function isEditMode(): bool
+    {
+        return ! is_null($this->form->user);
+    }
+
+    private function createUser(): void
+    {
+        $user = $this->userService->createUser(
+            $this->form->getUserData(),
+            $this->form->selectedRoles
+        );
+
+        session()->flash('message', 'User berhasil dibuat!');
+    }
+
+    private function updateUser(): void
+    {
+        $user = $this->userService->updateUser(
+            $this->form->user,
+            $this->form->getUserData(),
+            $this->form->selectedRoles
+        );
+
+        session()->flash('message', 'User berhasil diperbarui!');
+    }
+
+    private function resetForm(): void
+    {
+        $this->form->reset();
+        $this->modalTitle = '';
     }
 }

@@ -39,7 +39,6 @@ public function update(UpdateRequest $request): string
 }
 ```
 
-
 ### **Methods should do just one thing**
 
 A function should do just one thing and do it well.
@@ -81,7 +80,6 @@ public function getFullNameShort(): string
 }
 ```
 
-
 ### **Fat models, skinny controllers**
 
 Put all DB related logic into Eloquent models.
@@ -121,7 +119,6 @@ class Client extends Model
     }
 }
 ```
-
 
 ### **Validation**
 
@@ -163,7 +160,6 @@ class PostRequest extends Request
 }
 ```
 
-
 ### **Business logic should be in service class**
 
 A controller must have only one responsibility, so move business logic from controllers to service classes.
@@ -201,7 +197,6 @@ class ArticleService
     }
 }
 ```
-
 
 ### **Don't repeat yourself (DRY)**
 
@@ -244,7 +239,6 @@ public function getArticles(): Collection
 }
 ```
 
-
 ### **Prefer to use Eloquent over using Query Builder and raw SQL queries. Prefer collections over arrays**
 
 Eloquent allows you to write readable and maintainable code. Also, Eloquent has great built-in tools like soft deletes, events, scopes etc. You may want to check out [Eloquent to SQL reference](https://github.com/alexeymezenin/eloquent-sql-reference)
@@ -272,7 +266,6 @@ Good:
 Article::has('user.profile')->verified()->latest()->get();
 ```
 
-
 ### **Mass assignment**
 
 Bad:
@@ -294,7 +287,6 @@ Good:
 $category->article()->create($request->validated());
 ```
 
-
 ### **Do not execute queries in Blade templates and use eager loading (N + 1 problem)**
 
 Bad (for 100 users, 101 DB queries will be executed):
@@ -314,7 +306,6 @@ $users = User::with('profile')->get();
     {{ $user->profile->name }}
 @endforeach
 ```
-
 
 ### **Chunk data for data-heavy tasks**
 
@@ -338,7 +329,6 @@ $this->chunk(500, function ($users) {
 });
 ```
 
-
 ### **Prefer descriptive method and variable names over comments**
 
 Bad:
@@ -353,7 +343,6 @@ Good:
 ```php
 if ($this->hasJoins())
 ```
-
 
 ### **Do not put JS and CSS in Blade templates and do not put any HTML in PHP classes**
 
@@ -381,58 +370,31 @@ let article = $('#article').val();
 
 The best way is to use specialized PHP to JS package to transfer the data.
 
-
-### **Use config and language files, constants instead of text in the code**
-
-Bad:
-
-```php
-public function isNormal(): bool
-{
-    return $article->type === 'normal';
-}
-
-return back()->with('message', 'Your article has been added!');
-```
-
-Good:
-
-```php
-public function isNormal()
-{
-    return $article->type === Article::TYPE_NORMAL;
-}
-
-return back()->with('message', __('app.article_added'));
-```
-
-
 ### **Use standard Laravel tools accepted by community**
 
 Prefer to use built-in Laravel functionality and community packages instead of using 3rd party packages and tools. Any developer who will work with your app in the future will need to learn new tools. Also, chances to get help from the Laravel community are significantly lower when you're using a 3rd party package or tool. Do not make your client pay for that.
 
-Task | Standard tools | 3rd party tools
------------- | ------------- | -------------
-Authorization | Policies | Entrust, Sentinel and other packages
-Compiling assets | Laravel Mix, Vite | Grunt, Gulp, 3rd party packages
-Development Environment | Laravel Sail, Homestead | Docker
-Deployment | Laravel Forge | Deployer and other solutions
-Unit testing | PHPUnit, Mockery | Phpspec, Pest
-Browser testing | Laravel Dusk | Codeception
-DB | Eloquent | SQL, Doctrine
-Templates | Blade | Twig
-Working with data | Laravel collections | Arrays
-Form validation | Request classes | 3rd party packages, validation in controller
-Authentication | Built-in | 3rd party packages, your own solution
-API authentication | Laravel Passport, Laravel Sanctum | 3rd party JWT and OAuth packages
-Creating API | Built-in | Dingo API and similar packages
-Working with DB structure | Migrations | Working with DB structure directly
-Localization | Built-in | 3rd party packages
-Realtime user interfaces | Laravel Echo, Pusher | 3rd party packages and working with WebSockets directly
-Generating testing data | Seeder classes, Model Factories, Faker | Creating testing data manually
-Task scheduling | Laravel Task Scheduler | Scripts and 3rd party packages
-DB | MySQL, PostgreSQL, SQLite, SQL Server | MongoDB
-
+| Task                      | Standard tools                         | 3rd party tools                                         |
+|---------------------------|----------------------------------------|---------------------------------------------------------|
+| Authorization             | Policies                               | Entrust, Sentinel and other packages                    |
+| Compiling assets          | Laravel Mix, Vite                      | Grunt, Gulp, 3rd party packages                         |
+| Development Environment   | Laravel Sail, Homestead                | Docker                                                  |
+| Deployment                | Laravel Forge                          | Deployer and other solutions                            |
+| Unit testing              | PHPUnit, Mockery                       | Phpspec, Pest                                           |
+| Browser testing           | Laravel Dusk                           | Codeception                                             |
+| DB                        | Eloquent                               | SQL, Doctrine                                           |
+| Templates                 | Blade                                  | Twig                                                    |
+| Working with data         | Laravel collections                    | Arrays                                                  |
+| Form validation           | Request classes                        | 3rd party packages, validation in controller            |
+| Authentication            | Built-in                               | 3rd party packages, your own solution                   |
+| API authentication        | Laravel Passport, Laravel Sanctum      | 3rd party JWT and OAuth packages                        |
+| Creating API              | Built-in                               | Dingo API and similar packages                          |
+| Working with DB structure | Migrations                             | Working with DB structure directly                      |
+| Localization              | Built-in                               | 3rd party packages                                      |
+| Realtime user interfaces  | Laravel Echo, Pusher                   | 3rd party packages and working with WebSockets directly |
+| Generating testing data   | Seeder classes, Model Factories, Faker | Creating testing data manually                          |
+| Task scheduling           | Laravel Task Scheduler                 | Scripts and 3rd party packages                          |
+| DB                        | MySQL, PostgreSQL, SQLite, SQL Server  | MongoDB                                                 |
 
 ### **Follow Laravel naming conventions**
 
@@ -440,37 +402,36 @@ Follow [PSR standards](https://www.php-fig.org/psr/psr-12/).
 
 Also, follow naming conventions accepted by Laravel community:
 
-What | How | Good | Bad
------------- | ------------- | ------------- | -------------
-Controller | singular | ArticleController | ~~ArticlesController~~
-Route | plural | articles/1 | ~~article/1~~
-Route name | snake_case with dot notation | users.show_active | ~~users.show-active, show-active-users~~
-Model | singular | User | ~~Users~~
-hasOne or belongsTo relationship | singular | articleComment | ~~articleComments, article_comment~~
-All other relationships | plural | articleComments | ~~articleComment, article_comments~~
-Table | plural | article_comments | ~~article_comment, articleComments~~
-Pivot table | singular model names in alphabetical order | article_user | ~~user_article, articles_users~~
-Table column | snake_case without model name | meta_title | ~~MetaTitle; article_meta_title~~
-Model property | snake_case | $model->created_at | ~~$model->createdAt~~
-Foreign key | singular model name with _id suffix | article_id | ~~ArticleId, id_article, articles_id~~
-Primary key | - | id | ~~custom_id~~
-Migration | - | 2017_01_01_000000_create_articles_table | ~~2017_01_01_000000_articles~~
-Method | camelCase | getAll | ~~get_all~~
-Method in resource controller | [table](https://laravel.com/docs/master/controllers#resource-controllers) | store | ~~saveArticle~~
-Method in test class | camelCase | testGuestCannotSeeArticle | ~~test_guest_cannot_see_article~~
-Variable | camelCase | $articlesWithAuthor | ~~$articles_with_author~~
-Collection | descriptive, plural | $activeUsers = User::active()->get() | ~~$active, $data~~
-Object | descriptive, singular | $activeUser = User::active()->first() | ~~$users, $obj~~
-Config and language files index | snake_case | articles_enabled | ~~ArticlesEnabled; articles-enabled~~
-View | kebab-case | show-filtered.blade.php | ~~showFiltered.blade.php, show_filtered.blade.php~~
-Config | snake_case | google_calendar.php | ~~googleCalendar.php, google-calendar.php~~
-Contract (interface) | adjective or noun | AuthenticationInterface | ~~Authenticatable, IAuthentication~~
-Trait | adjective | Notifiable | ~~NotificationTrait~~
-Trait [(PSR)](https://www.php-fig.org/bylaws/psr-naming-conventions/) | adjective | NotifiableTrait | ~~Notification~~
-Enum | singular | UserType | ~~UserTypes~~, ~~UserTypeEnum~~
-FormRequest | singular | UpdateUserRequest | ~~UpdateUserFormRequest~~, ~~UserFormRequest~~, ~~UserRequest~~
-Seeder | singular | UserSeeder | ~~UsersSeeder~~
-
+| What                                                                  | How                                                                       | Good                                    | Bad                                                             |
+|-----------------------------------------------------------------------|---------------------------------------------------------------------------|-----------------------------------------|-----------------------------------------------------------------|
+| Controller                                                            | singular                                                                  | ArticleController                       | ~~ArticlesController~~                                          |
+| Route                                                                 | plural                                                                    | articles/1                              | ~~article/1~~                                                   |
+| Route name                                                            | snake_case with dot notation                                              | users.show_active                       | ~~users.show-active, show-active-users~~                        |
+| Model                                                                 | singular                                                                  | User                                    | ~~Users~~                                                       |
+| hasOne or belongsTo relationship                                      | singular                                                                  | articleComment                          | ~~articleComments, article_comment~~                            |
+| All other relationships                                               | plural                                                                    | articleComments                         | ~~articleComment, article_comments~~                            |
+| Table                                                                 | plural                                                                    | article_comments                        | ~~article_comment, articleComments~~                            |
+| Pivot table                                                           | singular model names in alphabetical order                                | article_user                            | ~~user_article, articles_users~~                                |
+| Table column                                                          | snake_case without model name                                             | meta_title                              | ~~MetaTitle; article_meta_title~~                               |
+| Model property                                                        | snake_case                                                                | $model->created_at                      | ~~$model->createdAt~~                                           |
+| Foreign key                                                           | singular model name with _id suffix                                       | article_id                              | ~~ArticleId, id_article, articles_id~~                          |
+| Primary key                                                           | -                                                                         | id                                      | ~~custom_id~~                                                   |
+| Migration                                                             | -                                                                         | 2017_01_01_000000_create_articles_table | ~~2017_01_01_000000_articles~~                                  |
+| Method                                                                | camelCase                                                                 | getAll                                  | ~~get_all~~                                                     |
+| Method in resource controller                                         | [table](https://laravel.com/docs/master/controllers#resource-controllers) | store                                   | ~~saveArticle~~                                                 |
+| Method in test class                                                  | camelCase                                                                 | testGuestCannotSeeArticle               | ~~test_guest_cannot_see_article~~                               |
+| Variable                                                              | camelCase                                                                 | $articlesWithAuthor                     | ~~$articles_with_author~~                                       |
+| Collection                                                            | descriptive, plural                                                       | $activeUsers = User::active()->get()    | ~~$active, $data~~                                              |
+| Object                                                                | descriptive, singular                                                     | $activeUser = User::active()->first()   | ~~$users, $obj~~                                                |
+| Config and language files index                                       | snake_case                                                                | articles_enabled                        | ~~ArticlesEnabled; articles-enabled~~                           |
+| View                                                                  | kebab-case                                                                | show-filtered.blade.php                 | ~~showFiltered.blade.php, show_filtered.blade.php~~             |
+| Config                                                                | snake_case                                                                | google_calendar.php                     | ~~googleCalendar.php, google-calendar.php~~                     |
+| Contract (interface)                                                  | adjective or noun                                                         | AuthenticationInterface                 | ~~Authenticatable, IAuthentication~~                            |
+| Trait                                                                 | adjective                                                                 | Notifiable                              | ~~NotificationTrait~~                                           |
+| Trait [(PSR)](https://www.php-fig.org/bylaws/psr-naming-conventions/) | adjective                                                                 | NotifiableTrait                         | ~~Notification~~                                                |
+| Enum                                                                  | singular                                                                  | UserType                                | ~~UserTypes~~, ~~UserTypeEnum~~                                 |
+| FormRequest                                                           | singular                                                                  | UpdateUserRequest                       | ~~UpdateUserFormRequest~~, ~~UserFormRequest~~, ~~UserRequest~~ |
+| Seeder                                                                | singular                                                                  | UserSeeder                              | ~~UsersSeeder~~                                                 |
 
 ### **Convention over configuration**
 
@@ -510,7 +471,6 @@ class Customer extends Model
 }
 ```
 
-
 ### **Use shorter and more readable syntax where possible**
 
 Bad:
@@ -529,25 +489,24 @@ $request->name;
 
 More examples:
 
-Common syntax | Shorter and more readable syntax
------------- | -------------
-`Session::get('cart')` | `session('cart')`
-`$request->session()->get('cart')` | `session('cart')`
-`Session::put('cart', $data)` | `session(['cart' => $data])`
-`$request->input('name'), Request::get('name')` | `$request->name, request('name')`
-`return Redirect::back()` | `return back()`
-`is_null($object->relation) ? null : $object->relation->id` | `optional($object->relation)->id` (in PHP 8: `$object->relation?->id`)
-`return view('index')->with('title', $title)->with('client', $client)` | `return view('index', compact('title', 'client'))`
-`$request->has('value') ? $request->value : 'default';` | `$request->get('value', 'default')`
-`Carbon::now(), Carbon::today()` | `now(), today()`
-`App::make('Class')` | `app('Class')`
-`->where('column', '=', 1)` | `->where('column', 1)`
-`->orderBy('created_at', 'desc')` | `->latest()`
-`->orderBy('age', 'desc')` | `->latest('age')`
-`->orderBy('created_at', 'asc')` | `->oldest()`
-`->select('id', 'name')->get()` | `->get(['id', 'name'])`
-`->first()->name` | `->value('name')`
-
+| Common syntax                                                          | Shorter and more readable syntax                                       |
+|------------------------------------------------------------------------|------------------------------------------------------------------------|
+| `Session::get('cart')`                                                 | `session('cart')`                                                      |
+| `$request->session()->get('cart')`                                     | `session('cart')`                                                      |
+| `Session::put('cart', $data)`                                          | `session(['cart' => $data])`                                           |
+| `$request->input('name'), Request::get('name')`                        | `$request->name, request('name')`                                      |
+| `return Redirect::back()`                                              | `return back()`                                                        |
+| `is_null($object->relation) ? null : $object->relation->id`            | `optional($object->relation)->id` (in PHP 8: `$object->relation?->id`) |
+| `return view('index')->with('title', $title)->with('client', $client)` | `return view('index', compact('title', 'client'))`                     |
+| `$request->has('value') ? $request->value : 'default';`                | `$request->get('value', 'default')`                                    |
+| `Carbon::now(), Carbon::today()`                                       | `now(), today()`                                                       |
+| `App::make('Class')`                                                   | `app('Class')`                                                         |
+| `->where('column', '=', 1)`                                            | `->where('column', 1)`                                                 |
+| `->orderBy('created_at', 'desc')`                                      | `->latest()`                                                           |
+| `->orderBy('age', 'desc')`                                             | `->latest('age')`                                                      |
+| `->orderBy('created_at', 'asc')`                                       | `->oldest()`                                                           |
+| `->select('id', 'name')->get()`                                        | `->get(['id', 'name'])`                                                |
+| `->first()->name`                                                      | `->value('name')`                                                      |
 
 ### **Use IoC / Service container instead of new Class**
 
@@ -570,7 +529,6 @@ public function __construct(protected User $user) {}
 $this->user->create($request->validated());
 ```
 
-
 ### **Do not get data from the `.env` file directly**
 
 Pass the data to config files instead and then use the `config()` helper function to use the data in an application.
@@ -590,7 +548,6 @@ Good:
 // Use the data
 $apiKey = config('api.key');
 ```
-
 
 ### **Store dates in the standard format. Use accessors and mutators to modify date format**
 
@@ -615,7 +572,6 @@ protected $casts = [
 {{ $object->ordered_at->toDateString() }}
 {{ $object->ordered_at->format('m-d') }}
 ```
-
 
 ### **Do not use DocBlocks**
 
@@ -649,7 +605,6 @@ public function isValidAsciiString(string $string): bool
 {
 }
 ```
-
 
 ### **Other good practices**
 

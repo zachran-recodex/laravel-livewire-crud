@@ -5,7 +5,6 @@ namespace App\Livewire\Administrator;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class ManageRoles extends Component
@@ -13,20 +12,19 @@ class ManageRoles extends Component
     use WithPagination;
 
     public $name = '';
-    public $selectedPermissions = [];
+
     public $editingRoleId = null;
+
     public $showModal = false;
-    public $search = '';
 
     public function rules(): array
     {
         $rules = [
             'name' => 'required|string|max:255',
-            'selectedPermissions' => 'array',
         ];
 
         if ($this->editingRoleId) {
-            $rules['name'] .= '|unique:roles,name,' . $this->editingRoleId;
+            $rules['name'] .= '|unique:roles,name,'.$this->editingRoleId;
         } else {
             $rules['name'] .= '|unique:roles,name';
         }
@@ -37,32 +35,20 @@ class ManageRoles extends Component
     #[Computed]
     public function roles()
     {
-        return Role::with('permissions')
-            ->when($this->search, function ($query) {
-                $query->where('name', 'like', '%' . $this->search . '%');
-            })
-            ->latest()
-            ->paginate(10);
-    }
-
-    #[Computed]
-    public function permissions()
-    {
-        return Permission::all();
+        return Role::latest()->paginate(10);
     }
 
     public function create()
     {
-        $this->reset(['name', 'selectedPermissions', 'editingRoleId']);
+        $this->reset(['name', 'editingRoleId']);
         $this->showModal = true;
     }
 
     public function edit($roleId)
     {
-        $role = Role::with('permissions')->findOrFail($roleId);
+        $role = Role::findOrFail($roleId);
         $this->editingRoleId = $role->id;
         $this->name = $role->name;
-        $this->selectedPermissions = $role->permissions->pluck('name')->toArray();
         $this->showModal = true;
     }
 
@@ -77,11 +63,9 @@ class ManageRoles extends Component
             $role = Role::create(['name' => $this->name]);
         }
 
-        $role->syncPermissions($this->selectedPermissions);
-
         $message = $this->editingRoleId ? 'Role successfully updated!' : 'Role successfully created!';
 
-        $this->reset(['name', 'selectedPermissions', 'editingRoleId']);
+        $this->reset(['name', 'editingRoleId']);
         $this->showModal = false;
 
         session()->flash('message', $message);
@@ -98,7 +82,7 @@ class ManageRoles extends Component
 
     public function resetForm()
     {
-        $this->reset(['name', 'selectedPermissions', 'editingRoleId']);
+        $this->reset(['name', 'editingRoleId']);
         $this->resetValidation();
     }
 

@@ -254,90 +254,90 @@ By default, flyouts open from the right. Change this with the `position` prop:
 
 #### Props
 
-| Prop | Description |
-|------|-------------|
-| `name` | Unique identifier for the modal. Required when using triggers. |
-| `variant` | Visual style of the modal. Options: `default`, `flyout`, `bare`. |
-| `position` | For flyout modals, the direction they open from. Options: `right` (default), `left`, `bottom`. |
-| `dismissible` | If `false`, prevents closing the modal by clicking outside. Default: `true`. |
-| `wire:model` | Optional Livewire property to bind the modal's open state to. |
+| Prop          | Description                                                                                    |
+|---------------|------------------------------------------------------------------------------------------------|
+| `name`        | Unique identifier for the modal. Required when using triggers.                                 |
+| `variant`     | Visual style of the modal. Options: `default`, `flyout`, `bare`.                               |
+| `position`    | For flyout modals, the direction they open from. Options: `right` (default), `left`, `bottom`. |
+| `dismissible` | If `false`, prevents closing the modal by clicking outside. Default: `true`.                   |
+| `wire:model`  | Optional Livewire property to bind the modal's open state to.                                  |
 
 #### Events
 
-| Event | Description |
-|-------|-------------|
-| `close` | Triggered when the modal is closed by any means. |
+| Event    | Description                                                                |
+|----------|----------------------------------------------------------------------------|
+| `close`  | Triggered when the modal is closed by any means.                           |
 | `cancel` | Triggered when the modal is closed by clicking outside or pressing escape. |
 
 #### Slots
 
-| Slot | Description |
-|------|-------------|
+| Slot      | Description        |
+|-----------|--------------------|
 | `default` | The modal content. |
 
 #### Common Classes
 
-| Class | Description |
-|-------|-------------|
+| Class | Description                      |
+|-------|----------------------------------|
 | `w-*` | Common use: `md:w-96` for width. |
 
 ### flux:modal.trigger
 
 #### Props
 
-| Prop | Description |
-|------|-------------|
-| `name` | Name of the modal to trigger. Must match the modal's name. |
-| `shortcut` | Keyboard shortcut to open the modal (e.g., `cmd.k`). |
+| Prop       | Description                                                |
+|------------|------------------------------------------------------------|
+| `name`     | Name of the modal to trigger. Must match the modal's name. |
+| `shortcut` | Keyboard shortcut to open the modal (e.g., `cmd.k`).       |
 
 #### Slots
 
-| Slot | Description |
-|------|-------------|
+| Slot      | Description                         |
+|-----------|-------------------------------------|
 | `default` | The trigger element (e.g., button). |
 
 ### flux:modal.close
 
 #### Slots
 
-| Slot | Description |
-|------|-------------|
+| Slot      | Description                               |
+|-----------|-------------------------------------------|
 | `default` | The close trigger element (e.g., button). |
 
 ## PHP Methods
 
 ### Flux::modal()
 
-| Parameter | Description |
-|-----------|-------------|
-| `name` | Name of the modal to control. |
+| Parameter | Description                   |
+|-----------|-------------------------------|
+| `name`    | Name of the modal to control. |
 
-| Method | Description |
-|--------|-------------|
-| `show()` | Shows the modal. |
+| Method    | Description       |
+|-----------|-------------------|
+| `show()`  | Shows the modal.  |
 | `close()` | Closes the modal. |
 
 ### Flux::modals()
 
-| Method | Description |
-|--------|-------------|
+| Method    | Description                    |
+|-----------|--------------------------------|
 | `close()` | Closes all modals on the page. |
 
 ## Alpine.js Methods
 
 ### $flux.modal()
 
-| Parameter | Description |
-|-----------|-------------|
-| `name` | Name of the modal to control. |
+| Parameter | Description                   |
+|-----------|-------------------------------|
+| `name`    | Name of the modal to control. |
 
-| Method | Description |
-|--------|-------------|
-| `show()` | Shows the modal. |
+| Method    | Description       |
+|-----------|-------------------|
+| `show()`  | Shows the modal.  |
 | `close()` | Closes the modal. |
 
 ### $flux.modals()
 
-| Method | Description |
-|--------|-------------|
+| Method    | Description                    |
+|-----------|--------------------------------|
 | `close()` | Closes all modals on the page. |

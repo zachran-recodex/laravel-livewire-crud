@@ -23,7 +23,6 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::middleware(['role:Super Admin'])->prefix('administrator')->name('admin.')->group(function () {
         Route::get('/users', \App\Livewire\Administrator\ManageUsers::class)->name('users');
         Route::get('/roles', \App\Livewire\Administrator\ManageRoles::class)->name('roles');
-        Route::get('/permissions', \App\Livewire\Administrator\ManagePermissions::class)->name('permissions');
     });
 
     Route::get('/heroes', \App\Livewire\ManageHeroes::class)->name('heroes');

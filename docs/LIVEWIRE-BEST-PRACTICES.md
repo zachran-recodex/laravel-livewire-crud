@@ -8,13 +8,13 @@ Livewire requires a root element (div) in each component. You should always writ
 
 ### 🌳 Always set up root element
 
-:x: Bad:
+Bad:
 ```html
 <h1>Component Name</h1>
 <div class="content">Content</div>
 ```
 
-:heavy_check_mark: Good:
+Good:
 ```html
 <div>
     <h1>Component Name</h1>
@@ -67,14 +67,14 @@ Instead of constantly [polling](https://livewire.laravel.com/docs/polling) the p
 
 ### ☔ Prefer to use event listeners over polling
 
-:x: Bad:
+Bad:
 ```html
 <div wire:poll>
     User Content
 </div>
 ```
 
-:heavy_check_mark: Good:
+Good:
 
 *Define the listener in the component using `On` attribute:*
 ```php
@@ -99,7 +99,7 @@ You can use [computed properties](https://livewire.laravel.com/docs/computed-pro
 
 ### 📦 Use computed properties to access database
 
-:x: Bad:
+Bad:
 ```php
 public function countries(): Collection
 {
@@ -109,7 +109,7 @@ public function countries(): Collection
 }
 ```
 
-:heavy_check_mark: Good:
+Good:
 ```php
 #[Computed]
 public function countries(): Collection
@@ -135,12 +135,12 @@ public function mount(User $user): void
 }
 ```
 
-:x: Bad:
+Bad:
 ```html
 <livewire:profile :user="auth()->user()" /> 
 ```
 
-:heavy_check_mark: Good:
+Good:
 ```html
 <livewire:profile :user="auth()->user()->uuid" /> 
 ```
@@ -152,22 +152,22 @@ In Livewire version 3, all the models are deferred by default (old: `defer` modi
 
 ### 💡 Avoid using *live* wire:model modifier where possible
 
-:x: Bad:
+Bad:
 ```html
 <input wire:model.live="email">
 ```
 
-:heavy_check_mark: Better:
+Better:
 ```html
 <input wire:model.live.debounce.500ms="email">
 ```
 
-:heavy_check_mark: Even better:
+Even better:
 ```html
 <input wire:model.blur="email">
 ```
 
-:heavy_check_mark: Ideal:
+Ideal:
 ```html
 <input wire:model="email">
 ```
@@ -241,7 +241,7 @@ This way you can reuse the same validation rules in different application layers
 
 ### 🌎 Use Form Request rules for validation
 
-:x: Bad:
+Bad:
 ```php
 public function rules(): array
 {
@@ -253,7 +253,7 @@ public function rules(): array
 }
 ```
 
-:heavy_check_mark: Good:
+Good:
 ```php
 public function rules(): array
 {

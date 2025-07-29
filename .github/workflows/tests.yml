@@ -24,22 +24,30 @@ jobs:
         with:
           php-version: 8.4
           tools: composer:v2
-          coverage: xdebug
+          coverage: xdebug # Keep xdebug for coverage generation
 
-      - name: Setup Node
+      - name: Cache Composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.composer/cache
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      - name: Install Composer Dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '20'
           cache: 'npm'
 
-      - name: Install Node Dependencies
-        run: npm i
+      - name: Install npm Dependencies
+        run: npm ci
 
       - name: Add Flux Credentials Loaded From ENV
         run: composer config http-basic.composer.fluxui.dev "${{ secrets.FLUX_USERNAME }}" "${{ secrets.FLUX_LICENSE_KEY }}"
-
-      - name: Install Dependencies
-        run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
       - name: Copy Environment File
         run: cp .env.example .env
@@ -50,5 +58,11 @@ jobs:
       - name: Build Assets
         run: npm run build
 
-      - name: Run Tests
-        run: ./vendor/bin/pest
+      - name: Run Tests with Coverage
+        run: ./vendor/bin/pest --coverage --coverage-clover coverage.xml
+
+      - name: Upload Coverage Report
+        uses: codecov/codecov-action@v4
+        with:
+          file: coverage.xml
+          token: ${{ secrets.CODECOV_TOKEN }} # This secret needs to be configured in GitHub repo settings
