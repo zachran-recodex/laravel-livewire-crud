@@ -12,8 +12,11 @@
             </a>
 
             <flux:navlist variant="outline">
-                <flux:navlist.group heading="Platform" class="grid">
+                <flux:navlist.group :heading="__('Platform')" class="grid">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>Dashboard</flux:navlist.item>
+                    <flux:navlist.item icon="photo" :href="route('heroes')" :current="request()->routeIs('heroes')" wire:navigate>Manage Heroes</flux:navlist.item>
+                    <flux:navlist.item icon="briefcase" :href="route('services')" :current="request()->routeIs('services')" wire:navigate>Manage Services</flux:navlist.item>
+                    <flux:navlist.item icon="paper-airplane" :href="route('fleets')" :current="request()->routeIs('fleets')" wire:navigate>Manage Fleets</flux:navlist.item>
                 </flux:navlist.group>
 
                 @role('Super Admin')
@@ -22,6 +25,7 @@
                     <flux:navlist.item icon="shield-check" :href="route('admin.roles')" :current="request()->routeIs('admin.roles')" wire:navigate>Manage Roles</flux:navlist.item>
                 </flux:navlist.group>
                 @endrole
+
             </flux:navlist>
 
             <flux:spacer />

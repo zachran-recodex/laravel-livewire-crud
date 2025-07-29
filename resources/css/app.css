@@ -26,6 +26,13 @@
     --color-accent: var(--color-neutral-800);
     --color-accent-content: var(--color-neutral-800);
     --color-accent-foreground: var(--color-white);
+
+    /* Flite Charter Brand Colors */
+    --color-emerald: #063313;
+    --color-white: #ffffff;
+    --color-gold: #c89116;
+    --color-brown: #6b5541;
+    --color-gray: #f8fafc;
 }
 
 @layer theme {
@@ -64,3 +71,12 @@ select:focus[data-flux-control] {
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
+
+/* Flite Charter Typography Classes */
+.font-primary {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.font-secondary {
+    font-family: 'Inter', sans-serif;
+}

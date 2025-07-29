@@ -122,7 +122,6 @@ After running `php artisan migrate:fresh --seed`:
 - **Computed Properties**: Database queries cached within component lifecycle
 
 ## Development Notes
-
 - Use the flux (resources/views/flux) component overrides in the created views
 - Before generating code, study docs/LARAVEL-BEST-PRACTICES.md and docs/LIVEWIRE-BEST-PRACTICES.md and apply them to the generated code
 - The generated code must always be consistent with the existing code
